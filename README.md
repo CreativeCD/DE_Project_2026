@@ -18,18 +18,16 @@
 
 ---
 
-## Team details (fill in before you start)
+## Team details
 
 | Role | Name | Enrollment No. | GitHub Username |
 |------|------|----------------|-----------------|
-| Group Lead | | | |
-| Member 2 | | | |
-| Member 3 | | | |
-| Member 4 | | | |
+| Group Lead | Charan Durga | 2501010122 | |
+| Member 2 | Sri Sai Deekshit Thitla | 2501010455 | Srisaiw |
+| Member 3 | Vaibhav Gupta | 2501010490 | Vaibhav-Gupta3187 |
+| Member 4 | Rusheel Chandra | 2501010391 | Rusheel1306 |
 
-**Team No.:** ____ · **Section:** ____ · **Repository URL:** ____
-
----
+**Team No.:** T0061 · **Section:** To be filled · **Repository URL:** https://github.com/CreativeCD/DE_Project_2026
 
 ## How this project works
 
