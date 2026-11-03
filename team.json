@@ -1,0 +1,27 @@
+{
+  "team_number": "T0061",
+  "group_lead": {
+    "name": "Charan Durga",
+    "enrollment_no": "2501010122",
+    "github": ""
+  },
+  "members": [
+    {
+      "name": "Sri Sai Deekshit Thitla",
+      "enrollment_no": "2501010455",
+      "github": "Srisaiw"
+    },
+    {
+      "name": "Vaibhav Gupta",
+      "enrollment_no": "2501010490",
+      "github": "Vaibhav-Gupta3187"
+    },
+    {
+      "name": "Rusheel Chandra",
+      "enrollment_no": "2501010391",
+      "github": "Rusheel1306"
+    }
+  ],
+  "postgres_version": "",
+  "laptop_used_for_benchmarks": ""
+}
