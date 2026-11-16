@@ -22,7 +22,7 @@
 
 | Role | Name | Enrollment No. | GitHub Username |
 |------|------|----------------|-----------------|
-| Group Lead | Charan Durga | 2501010122 | |
+| Group Lead | Charan Durga | 2501010122 | CreativeCD |
 | Member 2 | Sri Sai Deekshit Thitla | 2501010455 | Srisaiw |
 | Member 3 | Vaibhav Gupta | 2501010490 | Vaibhav-Gupta3187 |
 | Member 4 | Rusheel Chandra | 2501010391 | Rusheel1306 |
