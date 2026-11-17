@@ -31,14 +31,21 @@
 
 ## How this project works
 
-| Phase | What you do | You submit | Counts toward | Marks |
-|-------|-------------|------------|---------------|------:|
-| 1 | Understand the problem statements | `docs/01_problem_understanding.md` | Query Execution | 2 |
-| 2 | Work out the database schema **from the seed data** and load it | `sql/01_schema.sql`, `sql/02_load_data.sql`, `docs/02_schema_design.md` | Query Execution | 5 |
-| 3 | Run the **30 given SQL queries** and record their execution time | `docs/03_baseline_timings.md`, `benchmarks/results/baseline/` | Query Execution | 3 |
-| 4 | Optimize the queries and record the new times | `sql/05_indexes.sql`, `sql/06_optimized_queries.sql`, `docs/04_optimization_report.md`, `benchmarks/results/optimized/` | Code Optimization | 16 |
-| 5 | Scalability test on the **large dataset** (given later by faculty) and final report | `docs/05_scalability_report.md`, `benchmarks/results/large/` | Code Optimization | 14 |
-| | **Total** | | | **40** |
+| Phase | What you do | You submit | Counts toward | Marks | Status |
+|-------|-------------|------------|---------------|------:|:------:|
+| 1 | Understand the problem statements | `docs/01_problem_understanding.md` | Query Execution | 2 | ✅ Completed |
+| 2 | Work out the database schema **from the seed data** and load it | `sql/01_schema.sql`, `sql/02_load_data.sql`, `docs/02_schema_design.md` | Query Execution | 5 | ✅ Completed |
+| 3 | Run the **30 given SQL queries** and record their execution time | `docs/03_baseline_timings.md`, `benchmarks/results/baseline/` | Query Execution | 3 | ✅ Completed |
+| 4 | Optimize the queries and record the new times | `sql/05_indexes.sql`, `sql/06_optimized_queries.sql`, `docs/04_optimization_report.md`, `benchmarks/results/optimized/` | Code Optimization | 16 | Upcoming (CP3) |
+| 5 | Scalability test on the **large dataset** (given later by faculty) and final report | `docs/05_scalability_report.md`, `benchmarks/results/large/` | Code Optimization | 14 | Upcoming (CP4) |
+| | **Total** | | | **40** | |
+
+> **CP2 Baseline Benchmarking Summary (Completed 17 Nov 2026):**
+> * All 30 workload queries executed 3 times each against PostgreSQL 18.6 (90 runs total).
+> * Workload Total Time: **16,367.651 ms** (~16.37 s).
+> * Summary CSV: [`benchmarks/results/baseline/summary.csv`](benchmarks/results/baseline/summary.csv)
+> * Full Report: [`docs/03_baseline_timings.md`](docs/03_baseline_timings.md)
+> * Viva Preparation Guide: [`docs/CP2_VIVA_PREPARATION.md`](docs/CP2_VIVA_PREPARATION.md)
 
 ---
 
