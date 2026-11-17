@@ -1,0 +1,42 @@
+=== R09 run 1 ===
+Seq Scan on riders r  (cost=9783.22..10606.22 rows=2400 width=41) (actual time=14.955..17.053 rows=893.00 loops=1)
+  Filter: ((NOT (ANY (rider_id = (hashed SubPlan 1).col1))) AND (home_city_id = 1))
+  Rows Removed by Filter: 29107
+  Buffers: shared hit=6169
+  SubPlan 1
+    ->  Seq Scan on trips t  (cost=0.00..9655.20 rows=51207 width=4) (actual time=9.194..11.931 rows=50000.00 loops=1)
+          Filter: (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone)
+          Rows Removed by Filter: 250000
+          Buffers: shared hit=5796
+Planning:
+  Buffers: shared hit=135
+Planning Time: 0.240 ms
+Execution Time: 17.093 ms
+=== R09 run 2 ===
+Seq Scan on riders r  (cost=9783.22..10606.22 rows=2400 width=41) (actual time=15.319..17.465 rows=893.00 loops=1)
+  Filter: ((NOT (ANY (rider_id = (hashed SubPlan 1).col1))) AND (home_city_id = 1))
+  Rows Removed by Filter: 29107
+  Buffers: shared hit=6169
+  SubPlan 1
+    ->  Seq Scan on trips t  (cost=0.00..9655.20 rows=51207 width=4) (actual time=9.334..12.116 rows=50000.00 loops=1)
+          Filter: (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone)
+          Rows Removed by Filter: 250000
+          Buffers: shared hit=5796
+Planning:
+  Buffers: shared hit=135
+Planning Time: 0.237 ms
+Execution Time: 17.504 ms
+=== R09 run 3 ===
+Seq Scan on riders r  (cost=9783.22..10606.22 rows=2400 width=41) (actual time=15.134..17.585 rows=893.00 loops=1)
+  Filter: ((NOT (ANY (rider_id = (hashed SubPlan 1).col1))) AND (home_city_id = 1))
+  Rows Removed by Filter: 29107
+  Buffers: shared hit=6169
+  SubPlan 1
+    ->  Seq Scan on trips t  (cost=0.00..9655.20 rows=51207 width=4) (actual time=9.263..12.016 rows=50000.00 loops=1)
+          Filter: (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone)
+          Rows Removed by Filter: 250000
+          Buffers: shared hit=5796
+Planning:
+  Buffers: shared hit=135
+Planning Time: 0.298 ms
+Execution Time: 17.629 ms

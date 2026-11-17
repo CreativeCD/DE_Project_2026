@@ -1,0 +1,45 @@
+=== R02 run 1 ===
+GroupAggregate  (cost=1000.00..10012.12 rows=1 width=44) (actual time=9.180..9.992 rows=1.00 loops=1)
+  Buffers: shared hit=5796
+  ->  Gather  (cost=1000.00..10012.10 rows=1 width=10) (actual time=7.819..9.979 rows=5.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=5796
+        ->  Parallel Seq Scan on trips  (cost=0.00..9012.00 rows=1 width=10) (actual time=5.984..7.433 rows=1.67 loops=3)
+              Filter: ((driver_id = 217) AND ((status)::text = 'COMPLETED'::text) AND (date(requested_at) >= '2026-03-01'::date) AND (date(requested_at) <= '2026-03-31'::date))
+              Rows Removed by Filter: 99998
+              Buffers: shared hit=5796
+Planning:
+  Buffers: shared hit=119
+Planning Time: 0.216 ms
+Execution Time: 10.022 ms
+=== R02 run 2 ===
+GroupAggregate  (cost=1000.00..10012.12 rows=1 width=44) (actual time=7.732..8.470 rows=1.00 loops=1)
+  Buffers: shared hit=5796
+  ->  Gather  (cost=1000.00..10012.10 rows=1 width=10) (actual time=6.576..8.460 rows=5.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=5796
+        ->  Parallel Seq Scan on trips  (cost=0.00..9012.00 rows=1 width=10) (actual time=4.999..6.236 rows=1.67 loops=3)
+              Filter: ((driver_id = 217) AND ((status)::text = 'COMPLETED'::text) AND (date(requested_at) >= '2026-03-01'::date) AND (date(requested_at) <= '2026-03-31'::date))
+              Rows Removed by Filter: 99998
+              Buffers: shared hit=5796
+Planning:
+  Buffers: shared hit=119
+Planning Time: 0.189 ms
+Execution Time: 8.499 ms
+=== R02 run 3 ===
+GroupAggregate  (cost=1000.00..10012.12 rows=1 width=44) (actual time=7.349..8.070 rows=1.00 loops=1)
+  Buffers: shared hit=5796
+  ->  Gather  (cost=1000.00..10012.10 rows=1 width=10) (actual time=6.002..8.057 rows=5.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=5796
+        ->  Parallel Seq Scan on trips  (cost=0.00..9012.00 rows=1 width=10) (actual time=4.839..6.124 rows=1.67 loops=3)
+              Filter: ((driver_id = 217) AND ((status)::text = 'COMPLETED'::text) AND (date(requested_at) >= '2026-03-01'::date) AND (date(requested_at) <= '2026-03-31'::date))
+              Rows Removed by Filter: 99998
+              Buffers: shared hit=5796
+Planning:
+  Buffers: shared hit=119
+Planning Time: 0.180 ms
+Execution Time: 8.097 ms

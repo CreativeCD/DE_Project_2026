@@ -1,0 +1,33 @@
+=== W04 run 1 ===
+Insert on trips  (cost=0.00..150.00 rows=0 width=0) (actual time=6.673..6.673 rows=0.00 loops=1)
+  Buffers: shared hit=20062 dirtied=82 written=67
+  ->  Function Scan on generate_series g  (cost=0.00..150.00 rows=5000 width=274) (actual time=0.115..0.648 rows=5000.00 loops=1)
+Planning Time: 0.056 ms
+Trigger for constraint trips_rider_id_fkey: time=18.139 calls=5000
+Trigger for constraint trips_driver_id_fkey: time=1.074 calls=5000
+Trigger for constraint trips_vehicle_id_fkey: time=0.977 calls=5000
+Trigger for constraint trips_city_id_fkey: time=8.146 calls=5000
+Trigger for constraint trips_promo_code_fkey: time=1.040 calls=5000
+Execution Time: 36.659 ms
+=== W04 run 2 ===
+Insert on trips  (cost=0.00..150.00 rows=0 width=0) (actual time=6.920..6.920 rows=0.00 loops=1)
+  Buffers: shared hit=23026 dirtied=67 written=67
+  ->  Function Scan on generate_series g  (cost=0.00..150.00 rows=5000 width=274) (actual time=0.106..0.642 rows=5000.00 loops=1)
+Planning Time: 0.052 ms
+Trigger for constraint trips_rider_id_fkey: time=10.221 calls=5000
+Trigger for constraint trips_driver_id_fkey: time=1.013 calls=5000
+Trigger for constraint trips_vehicle_id_fkey: time=0.989 calls=5000
+Trigger for constraint trips_city_id_fkey: time=8.210 calls=5000
+Trigger for constraint trips_promo_code_fkey: time=1.044 calls=5000
+Execution Time: 29.050 ms
+=== W04 run 3 ===
+Insert on trips  (cost=0.00..150.00 rows=0 width=0) (actual time=7.042..7.042 rows=0.00 loops=1)
+  Buffers: shared hit=22823 dirtied=66 written=66
+  ->  Function Scan on generate_series g  (cost=0.00..150.00 rows=5000 width=274) (actual time=0.105..0.651 rows=5000.00 loops=1)
+Planning Time: 0.053 ms
+Trigger for constraint trips_rider_id_fkey: time=9.898 calls=5000
+Trigger for constraint trips_driver_id_fkey: time=1.023 calls=5000
+Trigger for constraint trips_vehicle_id_fkey: time=0.977 calls=5000
+Trigger for constraint trips_city_id_fkey: time=8.380 calls=5000
+Trigger for constraint trips_promo_code_fkey: time=1.075 calls=5000
+Execution Time: 28.990 ms
