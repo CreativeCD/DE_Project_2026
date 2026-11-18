@@ -1,0 +1,21 @@
+=== W01 run 1 ===
+Insert on trips  (cost=0.00..0.01 rows=1 width=120) (actual time=0.725..0.726 rows=1.00 loops=1)
+  Buffers: shared hit=18
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 0.812 ms
+=== W01 run 2 ===
+Insert on trips  (cost=0.00..0.01 rows=1 width=120) (actual time=0.725..0.726 rows=1.00 loops=1)
+  Buffers: shared hit=18
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 0.745 ms
+=== W01 run 3 ===
+Insert on trips  (cost=0.00..0.01 rows=1 width=120) (actual time=0.725..0.726 rows=1.00 loops=1)
+  Buffers: shared hit=18
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 0.730 ms

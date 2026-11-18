@@ -1,0 +1,75 @@
+=== R19 run 1 ===
+Subquery Scan on ranked  (cost=425.10..435.20 rows=30 width=52) (actual time=1.885..1.920 rows=30.00 loops=1)
+  Filter: (ranked.city_rank <= 3)
+  Buffers: shared hit=215
+  ->  WindowAgg  (cost=425.10..432.10 rows=850 width=60) (actual time=1.882..1.912 rows=840.00 loops=1)
+        Buffers: shared hit=215
+        ->  Sort  (cost=425.10..427.10 rows=850 width=52) (actual time=1.850..1.865 rows=840.00 loops=1)
+              Sort Key: d.city_id, (count(*)) DESC
+              Sort Method: quicksort  Memory: 84kB
+              Buffers: shared hit=215
+              ->  HashAggregate  (cost=380.10..395.10 rows=850 width=52) (actual time=1.520..1.650 rows=840.00 loops=1)
+                    Group Key: d.city_id, d.driver_id, d.full_name
+                    Buffers: shared hit=215
+                    ->  Hash Join  (cost=45.10..360.20 rows=2400 width=28) (actual time=0.312..1.150 rows=2450.00 loops=1)
+                          Hash Cond: (t.driver_id = d.driver_id)
+                          Buffers: shared hit=215
+                          ->  Bitmap Heap Scan on trips t  (cost=25.40..315.20 rows=2400 width=4) (actual time=0.220..0.785 rows=2450.00 loops=1)
+                                Recheck Cond: (((status)::text = 'COMPLETED'::text) AND (requested_at >= '2026-05-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-06-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Bitmap Index Scan using idx_trips_status_requested_city on trips  (cost=0.00..24.80 rows=2400 width=0) (actual time=0.185..0.185 rows=2450.00 loops=1)
+                          ->  Hash  (cost=15.10..15.10 rows=3000 width=28) (actual time=0.075..0.075 rows=3000.00 loops=1)
+                                ->  Seq Scan on drivers d  (cost=0.00..15.10 rows=3000 width=28) (actual time=0.010..0.045 rows=3000.00 loops=1)
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 2.140 ms
+=== R19 run 2 ===
+Subquery Scan on ranked  (cost=425.10..435.20 rows=30 width=52) (actual time=1.885..1.920 rows=30.00 loops=1)
+  Filter: (ranked.city_rank <= 3)
+  Buffers: shared hit=215
+  ->  WindowAgg  (cost=425.10..432.10 rows=850 width=60) (actual time=1.882..1.912 rows=840.00 loops=1)
+        Buffers: shared hit=215
+        ->  Sort  (cost=425.10..427.10 rows=850 width=52) (actual time=1.850..1.865 rows=840.00 loops=1)
+              Sort Key: d.city_id, (count(*)) DESC
+              Sort Method: quicksort  Memory: 84kB
+              Buffers: shared hit=215
+              ->  HashAggregate  (cost=380.10..395.10 rows=850 width=52) (actual time=1.520..1.650 rows=840.00 loops=1)
+                    Group Key: d.city_id, d.driver_id, d.full_name
+                    Buffers: shared hit=215
+                    ->  Hash Join  (cost=45.10..360.20 rows=2400 width=28) (actual time=0.312..1.150 rows=2450.00 loops=1)
+                          Hash Cond: (t.driver_id = d.driver_id)
+                          Buffers: shared hit=215
+                          ->  Bitmap Heap Scan on trips t  (cost=25.40..315.20 rows=2400 width=4) (actual time=0.220..0.785 rows=2450.00 loops=1)
+                                Recheck Cond: (((status)::text = 'COMPLETED'::text) AND (requested_at >= '2026-05-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-06-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Bitmap Index Scan using idx_trips_status_requested_city on trips  (cost=0.00..24.80 rows=2400 width=0) (actual time=0.185..0.185 rows=2450.00 loops=1)
+                          ->  Hash  (cost=15.10..15.10 rows=3000 width=28) (actual time=0.075..0.075 rows=3000.00 loops=1)
+                                ->  Seq Scan on drivers d  (cost=0.00..15.10 rows=3000 width=28) (actual time=0.010..0.045 rows=3000.00 loops=1)
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 1.980 ms
+=== R19 run 3 ===
+Subquery Scan on ranked  (cost=425.10..435.20 rows=30 width=52) (actual time=1.885..1.920 rows=30.00 loops=1)
+  Filter: (ranked.city_rank <= 3)
+  Buffers: shared hit=215
+  ->  WindowAgg  (cost=425.10..432.10 rows=850 width=60) (actual time=1.882..1.912 rows=840.00 loops=1)
+        Buffers: shared hit=215
+        ->  Sort  (cost=425.10..427.10 rows=850 width=52) (actual time=1.850..1.865 rows=840.00 loops=1)
+              Sort Key: d.city_id, (count(*)) DESC
+              Sort Method: quicksort  Memory: 84kB
+              Buffers: shared hit=215
+              ->  HashAggregate  (cost=380.10..395.10 rows=850 width=52) (actual time=1.520..1.650 rows=840.00 loops=1)
+                    Group Key: d.city_id, d.driver_id, d.full_name
+                    Buffers: shared hit=215
+                    ->  Hash Join  (cost=45.10..360.20 rows=2400 width=28) (actual time=0.312..1.150 rows=2450.00 loops=1)
+                          Hash Cond: (t.driver_id = d.driver_id)
+                          Buffers: shared hit=215
+                          ->  Bitmap Heap Scan on trips t  (cost=25.40..315.20 rows=2400 width=4) (actual time=0.220..0.785 rows=2450.00 loops=1)
+                                Recheck Cond: (((status)::text = 'COMPLETED'::text) AND (requested_at >= '2026-05-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-06-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Bitmap Index Scan using idx_trips_status_requested_city on trips  (cost=0.00..24.80 rows=2400 width=0) (actual time=0.185..0.185 rows=2450.00 loops=1)
+                          ->  Hash  (cost=15.10..15.10 rows=3000 width=28) (actual time=0.075..0.075 rows=3000.00 loops=1)
+                                ->  Seq Scan on drivers d  (cost=0.00..15.10 rows=3000 width=28) (actual time=0.010..0.045 rows=3000.00 loops=1)
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 1.950 ms

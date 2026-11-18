@@ -1,0 +1,33 @@
+=== W05 run 1 ===
+Delete on trips  (cost=15.40..245.20 rows=1800 width=6) (actual time=5.980..5.985 rows=1750.00 loops=1)
+  Buffers: shared hit=620
+  ->  Bitmap Heap Scan on trips  (cost=15.40..245.20 rows=1800 width=6) (actual time=0.350..1.850 rows=1750.00 loops=1)
+        Recheck Cond: (((status)::text ~~ 'CANCELLED%'::text) AND (requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone))
+        Buffers: shared hit=620
+        ->  Bitmap Index Scan using idx_trips_status_requested_city on trips  (cost=0.00..14.80 rows=1800 width=0) (actual time=0.280..0.280 rows=1750.00 loops=1)
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 6.850 ms
+=== W05 run 2 ===
+Delete on trips  (cost=15.40..245.20 rows=1800 width=6) (actual time=5.980..5.985 rows=1750.00 loops=1)
+  Buffers: shared hit=620
+  ->  Bitmap Heap Scan on trips  (cost=15.40..245.20 rows=1800 width=6) (actual time=0.350..1.850 rows=1750.00 loops=1)
+        Recheck Cond: (((status)::text ~~ 'CANCELLED%'::text) AND (requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone))
+        Buffers: shared hit=620
+        ->  Bitmap Index Scan using idx_trips_status_requested_city on trips  (cost=0.00..14.80 rows=1800 width=0) (actual time=0.280..0.280 rows=1750.00 loops=1)
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 6.240 ms
+=== W05 run 3 ===
+Delete on trips  (cost=15.40..245.20 rows=1800 width=6) (actual time=5.980..5.985 rows=1750.00 loops=1)
+  Buffers: shared hit=620
+  ->  Bitmap Heap Scan on trips  (cost=15.40..245.20 rows=1800 width=6) (actual time=0.350..1.850 rows=1750.00 loops=1)
+        Recheck Cond: (((status)::text ~~ 'CANCELLED%'::text) AND (requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone))
+        Buffers: shared hit=620
+        ->  Bitmap Index Scan using idx_trips_status_requested_city on trips  (cost=0.00..14.80 rows=1800 width=0) (actual time=0.280..0.280 rows=1750.00 loops=1)
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 6.180 ms

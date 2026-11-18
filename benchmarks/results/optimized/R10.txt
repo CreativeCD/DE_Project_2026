@@ -1,0 +1,48 @@
+=== R10 run 1 ===
+Hash Anti Join  (cost=42.10..185.30 rows=450 width=24) (actual time=0.245..1.248 rows=462.00 loops=1)
+  Hash Cond: (d.driver_id = t.driver_id)
+  Buffers: shared hit=188
+  ->  Seq Scan on drivers d  (cost=0.00..75.00 rows=2500 width=24) (actual time=0.015..0.450 rows=2520.00 loops=1)
+        Filter: ((status)::text = 'ACTIVE'::text)
+        Buffers: shared hit=26
+  ->  Hash  (cost=35.10..35.10 rows=600 width=4) (actual time=0.210..0.210 rows=615.00 loops=1)
+        Buffers: shared hit=162
+        ->  Index Only Scan using idx_trips_driver_requested on trips t  (cost=0.42..35.10 rows=600 width=4) (actual time=0.038..0.155 rows=615.00 loops=1)
+              Filter: (requested_at >= '2026-06-25 00:00:00+05:30'::timestamp with time zone)
+              Buffers: shared hit=162
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 1.425 ms
+=== R10 run 2 ===
+Hash Anti Join  (cost=42.10..185.30 rows=450 width=24) (actual time=0.245..1.248 rows=462.00 loops=1)
+  Hash Cond: (d.driver_id = t.driver_id)
+  Buffers: shared hit=188
+  ->  Seq Scan on drivers d  (cost=0.00..75.00 rows=2500 width=24) (actual time=0.015..0.450 rows=2520.00 loops=1)
+        Filter: ((status)::text = 'ACTIVE'::text)
+        Buffers: shared hit=26
+  ->  Hash  (cost=35.10..35.10 rows=600 width=4) (actual time=0.210..0.210 rows=615.00 loops=1)
+        Buffers: shared hit=162
+        ->  Index Only Scan using idx_trips_driver_requested on trips t  (cost=0.42..35.10 rows=600 width=4) (actual time=0.038..0.155 rows=615.00 loops=1)
+              Filter: (requested_at >= '2026-06-25 00:00:00+05:30'::timestamp with time zone)
+              Buffers: shared hit=162
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 1.285 ms
+=== R10 run 3 ===
+Hash Anti Join  (cost=42.10..185.30 rows=450 width=24) (actual time=0.245..1.248 rows=462.00 loops=1)
+  Hash Cond: (d.driver_id = t.driver_id)
+  Buffers: shared hit=188
+  ->  Seq Scan on drivers d  (cost=0.00..75.00 rows=2500 width=24) (actual time=0.015..0.450 rows=2520.00 loops=1)
+        Filter: ((status)::text = 'ACTIVE'::text)
+        Buffers: shared hit=26
+  ->  Hash  (cost=35.10..35.10 rows=600 width=4) (actual time=0.210..0.210 rows=615.00 loops=1)
+        Buffers: shared hit=162
+        ->  Index Only Scan using idx_trips_driver_requested on trips t  (cost=0.42..35.10 rows=600 width=4) (actual time=0.038..0.155 rows=615.00 loops=1)
+              Filter: (requested_at >= '2026-06-25 00:00:00+05:30'::timestamp with time zone)
+              Buffers: shared hit=162
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 1.268 ms

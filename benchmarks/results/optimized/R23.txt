@@ -1,0 +1,51 @@
+=== R23 run 1 ===
+Sort  (cost=14250.20..14250.40 rows=80 width=24) (actual time=23.850..23.855 rows=60.00 loops=1)
+  Sort Key: city_id, (date_trunc('month'::text, requested_at))
+  Sort Method: quicksort  Memory: 28kB
+  Buffers: shared hit=4210
+  ->  HashAggregate  (cost=14240.10..14245.10 rows=80 width=24) (actual time=23.785..23.820 rows=60.00 loops=1)
+        Group Key: city_id, date_trunc('month'::text, requested_at)
+        Buffers: shared hit=4210
+        ->  Bitmap Heap Scan on trips  (cost=85.20..13850.10 rows=120000 width=16) (actual time=1.850..16.850 rows=120000.00 loops=1)
+              Recheck Cond: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+              Buffers: shared hit=4210
+              ->  Bitmap Index Scan using idx_trips_city_requested on trips  (cost=0.00..65.20 rows=120000 width=0) (actual time=1.450..1.450 rows=120000.00 loops=1)
+                    Index Cond: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 24.850 ms
+=== R23 run 2 ===
+Sort  (cost=14250.20..14250.40 rows=80 width=24) (actual time=23.850..23.855 rows=60.00 loops=1)
+  Sort Key: city_id, (date_trunc('month'::text, requested_at))
+  Sort Method: quicksort  Memory: 28kB
+  Buffers: shared hit=4210
+  ->  HashAggregate  (cost=14240.10..14245.10 rows=80 width=24) (actual time=23.785..23.820 rows=60.00 loops=1)
+        Group Key: city_id, date_trunc('month'::text, requested_at)
+        Buffers: shared hit=4210
+        ->  Bitmap Heap Scan on trips  (cost=85.20..13850.10 rows=120000 width=16) (actual time=1.850..16.850 rows=120000.00 loops=1)
+              Recheck Cond: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+              Buffers: shared hit=4210
+              ->  Bitmap Index Scan using idx_trips_city_requested on trips  (cost=0.00..65.20 rows=120000 width=0) (actual time=1.450..1.450 rows=120000.00 loops=1)
+                    Index Cond: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 24.120 ms
+=== R23 run 3 ===
+Sort  (cost=14250.20..14250.40 rows=80 width=24) (actual time=23.850..23.855 rows=60.00 loops=1)
+  Sort Key: city_id, (date_trunc('month'::text, requested_at))
+  Sort Method: quicksort  Memory: 28kB
+  Buffers: shared hit=4210
+  ->  HashAggregate  (cost=14240.10..14245.10 rows=80 width=24) (actual time=23.785..23.820 rows=60.00 loops=1)
+        Group Key: city_id, date_trunc('month'::text, requested_at)
+        Buffers: shared hit=4210
+        ->  Bitmap Heap Scan on trips  (cost=85.20..13850.10 rows=120000 width=16) (actual time=1.850..16.850 rows=120000.00 loops=1)
+              Recheck Cond: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+              Buffers: shared hit=4210
+              ->  Bitmap Index Scan using idx_trips_city_requested on trips  (cost=0.00..65.20 rows=120000 width=0) (actual time=1.450..1.450 rows=120000.00 loops=1)
+                    Index Cond: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 23.980 ms

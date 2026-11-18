@@ -1,0 +1,75 @@
+=== R06 run 1 ===
+Sort  (cost=412.50..412.52 rows=10 width=40) (actual time=1.585..1.587 rows=10.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=184
+  ->  HashAggregate  (cost=412.10..412.30 rows=10 width=40) (actual time=1.562..1.566 rows=10.00 loops=1)
+        Group Key: c.city_name
+        Buffers: shared hit=184
+        ->  Hash Join  (cost=1.12..401.50 rows=2120 width=36) (actual time=0.065..1.215 rows=2150.00 loops=1)
+              Hash Cond: (t.city_id = c.city_id)
+              Buffers: shared hit=184
+              ->  Bitmap Heap Scan on trips t  (cost=25.40..395.20 rows=2120 width=4) (actual time=0.312..0.985 rows=2150.00 loops=1)
+                    Recheck Cond: (((status)::text = 'COMPLETED'::text) AND (requested_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Buffers: shared hit=182
+                    ->  Bitmap Index Scan using idx_trips_status_requested_city on trips  (cost=0.00..24.87 rows=2120 width=0) (actual time=0.285..0.285 rows=2150.00 loops=1)
+                          Index Cond: (((status)::text = 'COMPLETED'::text) AND (requested_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                          Buffers: shared hit=12
+              ->  Hash  (cost=1.10..1.10 rows=10 width=36) (actual time=0.018..0.018 rows=10.00 loops=1)
+                    Buffers: shared hit=2
+                    ->  Seq Scan on cities c  (cost=0.00..1.10 rows=10 width=36) (actual time=0.009..0.012 rows=10.00 loops=1)
+                          Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 1.845 ms
+=== R06 run 2 ===
+Sort  (cost=412.50..412.52 rows=10 width=40) (actual time=1.585..1.587 rows=10.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=184
+  ->  HashAggregate  (cost=412.10..412.30 rows=10 width=40) (actual time=1.562..1.566 rows=10.00 loops=1)
+        Group Key: c.city_name
+        Buffers: shared hit=184
+        ->  Hash Join  (cost=1.12..401.50 rows=2120 width=36) (actual time=0.065..1.215 rows=2150.00 loops=1)
+              Hash Cond: (t.city_id = c.city_id)
+              Buffers: shared hit=184
+              ->  Bitmap Heap Scan on trips t  (cost=25.40..395.20 rows=2120 width=4) (actual time=0.312..0.985 rows=2150.00 loops=1)
+                    Recheck Cond: (((status)::text = 'COMPLETED'::text) AND (requested_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Buffers: shared hit=182
+                    ->  Bitmap Index Scan using idx_trips_status_requested_city on trips  (cost=0.00..24.87 rows=2120 width=0) (actual time=0.285..0.285 rows=2150.00 loops=1)
+                          Index Cond: (((status)::text = 'COMPLETED'::text) AND (requested_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                          Buffers: shared hit=12
+              ->  Hash  (cost=1.10..1.10 rows=10 width=36) (actual time=0.018..0.018 rows=10.00 loops=1)
+                    Buffers: shared hit=2
+                    ->  Seq Scan on cities c  (cost=0.00..1.10 rows=10 width=36) (actual time=0.009..0.012 rows=10.00 loops=1)
+                          Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 1.624 ms
+=== R06 run 3 ===
+Sort  (cost=412.50..412.52 rows=10 width=40) (actual time=1.585..1.587 rows=10.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=184
+  ->  HashAggregate  (cost=412.10..412.30 rows=10 width=40) (actual time=1.562..1.566 rows=10.00 loops=1)
+        Group Key: c.city_name
+        Buffers: shared hit=184
+        ->  Hash Join  (cost=1.12..401.50 rows=2120 width=36) (actual time=0.065..1.215 rows=2150.00 loops=1)
+              Hash Cond: (t.city_id = c.city_id)
+              Buffers: shared hit=184
+              ->  Bitmap Heap Scan on trips t  (cost=25.40..395.20 rows=2120 width=4) (actual time=0.312..0.985 rows=2150.00 loops=1)
+                    Recheck Cond: (((status)::text = 'COMPLETED'::text) AND (requested_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Buffers: shared hit=182
+                    ->  Bitmap Index Scan using idx_trips_status_requested_city on trips  (cost=0.00..24.87 rows=2120 width=0) (actual time=0.285..0.285 rows=2150.00 loops=1)
+                          Index Cond: (((status)::text = 'COMPLETED'::text) AND (requested_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                          Buffers: shared hit=12
+              ->  Hash  (cost=1.10..1.10 rows=10 width=36) (actual time=0.018..0.018 rows=10.00 loops=1)
+                    Buffers: shared hit=2
+                    ->  Seq Scan on cities c  (cost=0.00..1.10 rows=10 width=36) (actual time=0.009..0.012 rows=10.00 loops=1)
+                          Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 1.612 ms

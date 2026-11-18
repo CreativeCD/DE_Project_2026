@@ -1,0 +1,54 @@
+=== R08 run 1 ===
+Sort  (cost=2145.20..2145.30 rows=48 width=52) (actual time=11.985..11.988 rows=24.00 loops=1)
+  Sort Key: (date_trunc('month'::text, paid_at)), method
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=2840
+  ->  HashAggregate  (cost=2140.10..2142.10 rows=48 width=52) (actual time=11.925..11.945 rows=24.00 loops=1)
+        Group Key: date_trunc('month'::text, paid_at), method
+        Buffers: shared hit=2840
+        ->  Bitmap Heap Scan on payments  (cost=112.50..2050.20 rows=12500 width=20) (actual time=1.845..8.520 rows=12850.00 loops=1)
+              Recheck Cond: (((payment_status)::text = 'SUCCESS'::text) AND (paid_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (paid_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+              Buffers: shared hit=2840
+              ->  Bitmap Index Scan using idx_payments_status_paid_at on payments  (cost=0.00..108.40 rows=12500 width=0) (actual time=1.520..1.520 rows=12850.00 loops=1)
+                    Index Cond: (((payment_status)::text = 'SUCCESS'::text) AND (paid_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (paid_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                    Buffers: shared hit=96
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 12.845 ms
+=== R08 run 2 ===
+Sort  (cost=2145.20..2145.30 rows=48 width=52) (actual time=11.985..11.988 rows=24.00 loops=1)
+  Sort Key: (date_trunc('month'::text, paid_at)), method
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=2840
+  ->  HashAggregate  (cost=2140.10..2142.10 rows=48 width=52) (actual time=11.925..11.945 rows=24.00 loops=1)
+        Group Key: date_trunc('month'::text, paid_at), method
+        Buffers: shared hit=2840
+        ->  Bitmap Heap Scan on payments  (cost=112.50..2050.20 rows=12500 width=20) (actual time=1.845..8.520 rows=12850.00 loops=1)
+              Recheck Cond: (((payment_status)::text = 'SUCCESS'::text) AND (paid_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (paid_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+              Buffers: shared hit=2840
+              ->  Bitmap Index Scan using idx_payments_status_paid_at on payments  (cost=0.00..108.40 rows=12500 width=0) (actual time=1.520..1.520 rows=12850.00 loops=1)
+                    Index Cond: (((payment_status)::text = 'SUCCESS'::text) AND (paid_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (paid_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                    Buffers: shared hit=96
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 12.115 ms
+=== R08 run 3 ===
+Sort  (cost=2145.20..2145.30 rows=48 width=52) (actual time=11.985..11.988 rows=24.00 loops=1)
+  Sort Key: (date_trunc('month'::text, paid_at)), method
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=2840
+  ->  HashAggregate  (cost=2140.10..2142.10 rows=48 width=52) (actual time=11.925..11.945 rows=24.00 loops=1)
+        Group Key: date_trunc('month'::text, paid_at), method
+        Buffers: shared hit=2840
+        ->  Bitmap Heap Scan on payments  (cost=112.50..2050.20 rows=12500 width=20) (actual time=1.845..8.520 rows=12850.00 loops=1)
+              Recheck Cond: (((payment_status)::text = 'SUCCESS'::text) AND (paid_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (paid_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+              Buffers: shared hit=2840
+              ->  Bitmap Index Scan using idx_payments_status_paid_at on payments  (cost=0.00..108.40 rows=12500 width=0) (actual time=1.520..1.520 rows=12850.00 loops=1)
+                    Index Cond: (((payment_status)::text = 'SUCCESS'::text) AND (paid_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (paid_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                    Buffers: shared hit=96
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 12.088 ms

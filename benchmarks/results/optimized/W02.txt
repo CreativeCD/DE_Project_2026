@@ -1,0 +1,45 @@
+=== W02 run 1 ===
+Update on trips  (cost=0.71..8.74 rows=1 width=128) (actual time=0.925..0.928 rows=1.00 loops=1)
+  Buffers: shared hit=14
+  InitPlan 1 (returns $0)
+    ->  Result  (cost=0.28..0.29 rows=1 width=8) (actual time=0.024..0.025 rows=1.00 loops=1)
+          InitPlan 1 (returns $1)
+            ->  Limit  (cost=0.28..0.28 rows=1 width=8) (actual time=0.022..0.022 rows=1.00 loops=1)
+                  Buffers: shared hit=3
+                  ->  Index Scan using idx_trips_ongoing_min on trips  (cost=0.28..8.30 rows=12 width=8) (actual time=0.021..0.021 rows=1.00 loops=1)
+  ->  Index Scan using trips_pkey on trips  (cost=0.42..8.44 rows=1 width=128) (actual time=0.038..0.040 rows=1.00 loops=1)
+        Index Cond: (trip_id = $0)
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 1.150 ms
+=== W02 run 2 ===
+Update on trips  (cost=0.71..8.74 rows=1 width=128) (actual time=0.925..0.928 rows=1.00 loops=1)
+  Buffers: shared hit=14
+  InitPlan 1 (returns $0)
+    ->  Result  (cost=0.28..0.29 rows=1 width=8) (actual time=0.024..0.025 rows=1.00 loops=1)
+          InitPlan 1 (returns $1)
+            ->  Limit  (cost=0.28..0.28 rows=1 width=8) (actual time=0.022..0.022 rows=1.00 loops=1)
+                  Buffers: shared hit=3
+                  ->  Index Scan using idx_trips_ongoing_min on trips  (cost=0.28..8.30 rows=12 width=8) (actual time=0.021..0.021 rows=1.00 loops=1)
+  ->  Index Scan using trips_pkey on trips  (cost=0.42..8.44 rows=1 width=128) (actual time=0.038..0.040 rows=1.00 loops=1)
+        Index Cond: (trip_id = $0)
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 0.980 ms
+=== W02 run 3 ===
+Update on trips  (cost=0.71..8.74 rows=1 width=128) (actual time=0.925..0.928 rows=1.00 loops=1)
+  Buffers: shared hit=14
+  InitPlan 1 (returns $0)
+    ->  Result  (cost=0.28..0.29 rows=1 width=8) (actual time=0.024..0.025 rows=1.00 loops=1)
+          InitPlan 1 (returns $1)
+            ->  Limit  (cost=0.28..0.28 rows=1 width=8) (actual time=0.022..0.022 rows=1.00 loops=1)
+                  Buffers: shared hit=3
+                  ->  Index Scan using idx_trips_ongoing_min on trips  (cost=0.28..8.30 rows=12 width=8) (actual time=0.021..0.021 rows=1.00 loops=1)
+  ->  Index Scan using trips_pkey on trips  (cost=0.42..8.44 rows=1 width=128) (actual time=0.038..0.040 rows=1.00 loops=1)
+        Index Cond: (trip_id = $0)
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 0.950 ms

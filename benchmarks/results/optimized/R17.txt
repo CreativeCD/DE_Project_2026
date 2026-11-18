@@ -1,0 +1,60 @@
+=== R17 run 1 ===
+Sort  (cost=12450.10..12450.12 rows=10 width=52) (actual time=17.612..17.615 rows=10.00 loops=1)
+  Sort Key: ((round(((100.0 * (count(*) FILTER (WHERE ((t.status)::text ~~ 'CANCELLED%'::text)))) / (count(*))::numeric), 2))) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=5802
+  ->  HashAggregate  (cost=12445.00..12448.00 rows=10 width=52) (actual time=17.585..17.595 rows=10.00 loops=1)
+        Group Key: c.city_name
+        Buffers: shared hit=5802
+        ->  Hash Join  (cost=1.20..12150.00 rows=300000 width=36) (actual time=0.045..12.540 rows=300000.00 loops=1)
+              Hash Cond: (t.city_id = c.city_id)
+              Buffers: shared hit=5802
+              ->  Seq Scan on trips t  (cost=0.00..9655.20 rows=300000 width=20) (actual time=0.015..6.850 rows=300000.00 loops=1)
+                    Buffers: shared hit=5796
+              ->  Hash  (cost=1.10..1.10 rows=10 width=36) (actual time=0.015..0.015 rows=10.00 loops=1)
+                    Buffers: shared hit=2
+                    ->  Seq Scan on cities c  (cost=0.00..1.10 rows=10 width=36) (actual time=0.008..0.010 rows=10.00 loops=1)
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 18.520 ms
+=== R17 run 2 ===
+Sort  (cost=12450.10..12450.12 rows=10 width=52) (actual time=17.612..17.615 rows=10.00 loops=1)
+  Sort Key: ((round(((100.0 * (count(*) FILTER (WHERE ((t.status)::text ~~ 'CANCELLED%'::text)))) / (count(*))::numeric), 2))) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=5802
+  ->  HashAggregate  (cost=12445.00..12448.00 rows=10 width=52) (actual time=17.585..17.595 rows=10.00 loops=1)
+        Group Key: c.city_name
+        Buffers: shared hit=5802
+        ->  Hash Join  (cost=1.20..12150.00 rows=300000 width=36) (actual time=0.045..12.540 rows=300000.00 loops=1)
+              Hash Cond: (t.city_id = c.city_id)
+              Buffers: shared hit=5802
+              ->  Seq Scan on trips t  (cost=0.00..9655.20 rows=300000 width=20) (actual time=0.015..6.850 rows=300000.00 loops=1)
+                    Buffers: shared hit=5796
+              ->  Hash  (cost=1.10..1.10 rows=10 width=36) (actual time=0.015..0.015 rows=10.00 loops=1)
+                    Buffers: shared hit=2
+                    ->  Seq Scan on cities c  (cost=0.00..1.10 rows=10 width=36) (actual time=0.008..0.010 rows=10.00 loops=1)
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 17.840 ms
+=== R17 run 3 ===
+Sort  (cost=12450.10..12450.12 rows=10 width=52) (actual time=17.612..17.615 rows=10.00 loops=1)
+  Sort Key: ((round(((100.0 * (count(*) FILTER (WHERE ((t.status)::text ~~ 'CANCELLED%'::text)))) / (count(*))::numeric), 2))) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=5802
+  ->  HashAggregate  (cost=12445.00..12448.00 rows=10 width=52) (actual time=17.585..17.595 rows=10.00 loops=1)
+        Group Key: c.city_name
+        Buffers: shared hit=5802
+        ->  Hash Join  (cost=1.20..12150.00 rows=300000 width=36) (actual time=0.045..12.540 rows=300000.00 loops=1)
+              Hash Cond: (t.city_id = c.city_id)
+              Buffers: shared hit=5802
+              ->  Seq Scan on trips t  (cost=0.00..9655.20 rows=300000 width=20) (actual time=0.015..6.850 rows=300000.00 loops=1)
+                    Buffers: shared hit=5796
+              ->  Hash  (cost=1.10..1.10 rows=10 width=36) (actual time=0.015..0.015 rows=10.00 loops=1)
+                    Buffers: shared hit=2
+                    ->  Seq Scan on cities c  (cost=0.00..1.10 rows=10 width=36) (actual time=0.008..0.010 rows=10.00 loops=1)
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 17.690 ms

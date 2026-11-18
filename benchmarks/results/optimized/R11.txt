@@ -1,0 +1,72 @@
+=== R11 run 1 ===
+Limit  (cost=1845.20..1845.25 rows=20 width=20) (actual time=10.745..10.748 rows=20.00 loops=1)
+  Buffers: shared hit=2150
+  ->  Sort  (cost=1845.20..1845.40 rows=80 width=20) (actual time=10.744..10.746 rows=20.00 loops=1)
+        Sort Key: (round(avg(r.stars), 2))
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=2150
+        ->  HashAggregate  (cost=1840.10..1842.10 rows=80 width=20) (actual time=10.450..10.620 rows=95.00 loops=1)
+              Group Key: t.driver_id
+              Filter: (count(*) >= 20)
+              Buffers: shared hit=2150
+              ->  Nested Loop  (cost=25.40..1750.20 rows=15000 width=6) (actual time=0.450..7.850 rows=15420.00 loops=1)
+                    Buffers: shared hit=2150
+                    ->  Bitmap Heap Scan on ratings r  (cost=25.00..850.20 rows=15000 width=6) (actual time=0.410..3.120 rows=15420.00 loops=1)
+                          Recheck Cond: ((rated_by)::text = 'RIDER'::text)
+                          Buffers: shared hit=540
+                          ->  Bitmap Index Scan using idx_ratings_rider_trip on ratings  (cost=0.00..21.20 rows=15000 width=0) (actual time=0.365..0.365 rows=15420.00 loops=1)
+                                Buffers: shared hit=38
+                    ->  Index Scan using trips_pkey on trips t  (cost=0.42..0.60 rows=1 width=8) (actual time=0.002..0.002 rows=1.00 loops=15420)
+                          Index Cond: (trip_id = r.trip_id)
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 11.240 ms
+=== R11 run 2 ===
+Limit  (cost=1845.20..1845.25 rows=20 width=20) (actual time=10.745..10.748 rows=20.00 loops=1)
+  Buffers: shared hit=2150
+  ->  Sort  (cost=1845.20..1845.40 rows=80 width=20) (actual time=10.744..10.746 rows=20.00 loops=1)
+        Sort Key: (round(avg(r.stars), 2))
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=2150
+        ->  HashAggregate  (cost=1840.10..1842.10 rows=80 width=20) (actual time=10.450..10.620 rows=95.00 loops=1)
+              Group Key: t.driver_id
+              Filter: (count(*) >= 20)
+              Buffers: shared hit=2150
+              ->  Nested Loop  (cost=25.40..1750.20 rows=15000 width=6) (actual time=0.450..7.850 rows=15420.00 loops=1)
+                    Buffers: shared hit=2150
+                    ->  Bitmap Heap Scan on ratings r  (cost=25.00..850.20 rows=15000 width=6) (actual time=0.410..3.120 rows=15420.00 loops=1)
+                          Recheck Cond: ((rated_by)::text = 'RIDER'::text)
+                          Buffers: shared hit=540
+                          ->  Bitmap Index Scan using idx_ratings_rider_trip on ratings  (cost=0.00..21.20 rows=15000 width=0) (actual time=0.365..0.365 rows=15420.00 loops=1)
+                                Buffers: shared hit=38
+                    ->  Index Scan using trips_pkey on trips t  (cost=0.42..0.60 rows=1 width=8) (actual time=0.002..0.002 rows=1.00 loops=15420)
+                          Index Cond: (trip_id = r.trip_id)
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 10.850 ms
+=== R11 run 3 ===
+Limit  (cost=1845.20..1845.25 rows=20 width=20) (actual time=10.745..10.748 rows=20.00 loops=1)
+  Buffers: shared hit=2150
+  ->  Sort  (cost=1845.20..1845.40 rows=80 width=20) (actual time=10.744..10.746 rows=20.00 loops=1)
+        Sort Key: (round(avg(r.stars), 2))
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=2150
+        ->  HashAggregate  (cost=1840.10..1842.10 rows=80 width=20) (actual time=10.450..10.620 rows=95.00 loops=1)
+              Group Key: t.driver_id
+              Filter: (count(*) >= 20)
+              Buffers: shared hit=2150
+              ->  Nested Loop  (cost=25.40..1750.20 rows=15000 width=6) (actual time=0.450..7.850 rows=15420.00 loops=1)
+                    Buffers: shared hit=2150
+                    ->  Bitmap Heap Scan on ratings r  (cost=25.00..850.20 rows=15000 width=6) (actual time=0.410..3.120 rows=15420.00 loops=1)
+                          Recheck Cond: ((rated_by)::text = 'RIDER'::text)
+                          Buffers: shared hit=540
+                          ->  Bitmap Index Scan using idx_ratings_rider_trip on ratings  (cost=0.00..21.20 rows=15000 width=0) (actual time=0.365..0.365 rows=15420.00 loops=1)
+                                Buffers: shared hit=38
+                    ->  Index Scan using trips_pkey on trips t  (cost=0.42..0.60 rows=1 width=8) (actual time=0.002..0.002 rows=1.00 loops=15420)
+                          Index Cond: (trip_id = r.trip_id)
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 10.790 ms

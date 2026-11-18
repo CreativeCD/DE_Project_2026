@@ -1,0 +1,39 @@
+=== R14 run 1 ===
+Nested Loop  (cost=0.57..16.63 rows=1 width=56) (actual time=0.027..0.029 rows=1.00 loops=1)
+  Buffers: shared hit=6
+  ->  Index Scan using vehicles_registration_no_key on vehicles v  (cost=0.28..8.30 rows=1 width=32) (actual time=0.016..0.017 rows=1.00 loops=1)
+        Index Cond: ((registration_no)::text = 'KA01AA1500'::text)
+        Buffers: shared hit=3
+  ->  Index Scan using drivers_pkey on drivers d  (cost=0.28..8.30 rows=1 width=28) (actual time=0.009..0.010 rows=1.00 loops=1)
+        Index Cond: (driver_id = v.driver_id)
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 0.034 ms
+=== R14 run 2 ===
+Nested Loop  (cost=0.57..16.63 rows=1 width=56) (actual time=0.027..0.029 rows=1.00 loops=1)
+  Buffers: shared hit=6
+  ->  Index Scan using vehicles_registration_no_key on vehicles v  (cost=0.28..8.30 rows=1 width=32) (actual time=0.016..0.017 rows=1.00 loops=1)
+        Index Cond: ((registration_no)::text = 'KA01AA1500'::text)
+        Buffers: shared hit=3
+  ->  Index Scan using drivers_pkey on drivers d  (cost=0.28..8.30 rows=1 width=28) (actual time=0.009..0.010 rows=1.00 loops=1)
+        Index Cond: (driver_id = v.driver_id)
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 0.031 ms
+=== R14 run 3 ===
+Nested Loop  (cost=0.57..16.63 rows=1 width=56) (actual time=0.027..0.029 rows=1.00 loops=1)
+  Buffers: shared hit=6
+  ->  Index Scan using vehicles_registration_no_key on vehicles v  (cost=0.28..8.30 rows=1 width=32) (actual time=0.016..0.017 rows=1.00 loops=1)
+        Index Cond: ((registration_no)::text = 'KA01AA1500'::text)
+        Buffers: shared hit=3
+  ->  Index Scan using drivers_pkey on drivers d  (cost=0.28..8.30 rows=1 width=28) (actual time=0.009..0.010 rows=1.00 loops=1)
+        Index Cond: (driver_id = v.driver_id)
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 0.030 ms

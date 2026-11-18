@@ -1,0 +1,36 @@
+=== R02 run 1 ===
+GroupAggregate  (cost=0.42..8.46 rows=1 width=44) (actual time=0.051..0.053 rows=1.00 loops=1)
+  Group Key: driver_id
+  Buffers: shared hit=4
+  ->  Index Only Scan using idx_trips_driver_status_date on trips  (cost=0.42..8.44 rows=4 width=12) (actual time=0.034..0.042 rows=6.00 loops=1)
+        Index Cond: ((driver_id = 217) AND ((status)::text = 'COMPLETED'::text) AND (requested_at >= '2026-03-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-04-01 00:00:00+05:30'::timestamp with time zone))
+        Heap Fetches: 0
+        Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 0.078 ms
+=== R02 run 2 ===
+GroupAggregate  (cost=0.42..8.46 rows=1 width=44) (actual time=0.051..0.053 rows=1.00 loops=1)
+  Group Key: driver_id
+  Buffers: shared hit=4
+  ->  Index Only Scan using idx_trips_driver_status_date on trips  (cost=0.42..8.44 rows=4 width=12) (actual time=0.034..0.042 rows=6.00 loops=1)
+        Index Cond: ((driver_id = 217) AND ((status)::text = 'COMPLETED'::text) AND (requested_at >= '2026-03-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-04-01 00:00:00+05:30'::timestamp with time zone))
+        Heap Fetches: 0
+        Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 0.058 ms
+=== R02 run 3 ===
+GroupAggregate  (cost=0.42..8.46 rows=1 width=44) (actual time=0.051..0.053 rows=1.00 loops=1)
+  Group Key: driver_id
+  Buffers: shared hit=4
+  ->  Index Only Scan using idx_trips_driver_status_date on trips  (cost=0.42..8.44 rows=4 width=12) (actual time=0.034..0.042 rows=6.00 loops=1)
+        Index Cond: ((driver_id = 217) AND ((status)::text = 'COMPLETED'::text) AND (requested_at >= '2026-03-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-04-01 00:00:00+05:30'::timestamp with time zone))
+        Heap Fetches: 0
+        Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=42
+Planning Time: 0.185 ms
+Execution Time: 0.056 ms

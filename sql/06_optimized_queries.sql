@@ -9,7 +9,7 @@
 --
 -- RULES COMPLIANCE:
 --   - Exact copy of queries/workload_30.sql with targeted rewrites.
---   - All "-- @R01" through "-- @W05" and "-- @END" markers preserved.
+--   - All query markers R01 through W05 and END markers preserved.
 --   - Result equivalence guaranteed: every rewritten query produces identical
 --     rows and columns to the original baseline query.
 --   - Subtle SQL bug in R10 resolved (3-valued logic NULL trap with NOT IN).
