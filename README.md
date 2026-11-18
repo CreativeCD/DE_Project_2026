@@ -36,7 +36,7 @@
 | 1 | Understand the problem statements | `docs/01_problem_understanding.md` | Query Execution | 2 | ✅ Completed |
 | 2 | Work out the database schema **from the seed data** and load it | `sql/01_schema.sql`, `sql/02_load_data.sql`, `docs/02_schema_design.md` | Query Execution | 5 | ✅ Completed |
 | 3 | Run the **30 given SQL queries** and record their execution time | `docs/03_baseline_timings.md`, `benchmarks/results/baseline/` | Query Execution | 3 | ✅ Completed |
-| 4 | Optimize the queries and record the new times | `sql/05_indexes.sql`, `sql/06_optimized_queries.sql`, `docs/04_optimization_report.md`, `benchmarks/results/optimized/` | Code Optimization | 16 | Upcoming (CP3) |
+| 4 | Optimize the queries and record the new times | `sql/05_indexes.sql`, `sql/06_optimized_queries.sql`, `docs/04_optimization_report.md`, `benchmarks/results/optimized/` | Code Optimization | 16 | ✅ Completed (CP3) |
 | 5 | Scalability test on the **large dataset** (given later by faculty) and final report | `docs/05_scalability_report.md`, `benchmarks/results/large/` | Code Optimization | 14 | Upcoming (CP4) |
 | | **Total** | | | **40** | |
 
@@ -46,6 +46,17 @@
 > * Summary CSV: [`benchmarks/results/baseline/summary.csv`](benchmarks/results/baseline/summary.csv)
 > * Full Report: [`docs/03_baseline_timings.md`](docs/03_baseline_timings.md)
 > * Viva Preparation Guide: [`docs/CP2_VIVA_PREPARATION.md`](docs/CP2_VIVA_PREPARATION.md)
+
+> **CP3 Optimization Benchmarking Summary (Completed 19 Nov 2026):**
+> * Systematic indexing and query refactoring applied across all 30 workload queries.
+> * Workload Total Time reduced from **16,367.651 ms** to **148.971 ms** (**99.09% improvement, 110× throughput increase**).
+> * Primary bottleneck `R18` dropped from **15,918.767 ms** to **2.858 ms** (**5,569× speedup**).
+> * Subtle SQL 3-valued logic bug in `R10` (`NOT IN` on nullable `driver_id`) resolved via `NOT EXISTS`.
+> * Performance Indexes: [`sql/05_indexes.sql`](sql/05_indexes.sql)
+> * Optimized Queries: [`sql/06_optimized_queries.sql`](sql/06_optimized_queries.sql)
+> * Summary CSV: [`benchmarks/results/optimized/summary.csv`](benchmarks/results/optimized/summary.csv)
+> * Master Optimization Report: [`docs/04_optimization_report.md`](docs/04_optimization_report.md)
+> * CP3 Viva Preparation Guide: [`docs/CP3_VIVA_PREPARATION.md`](docs/CP3_VIVA_PREPARATION.md)
 
 ---
 
