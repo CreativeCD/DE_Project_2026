@@ -1,0 +1,69 @@
+=== R10 run 1 ===
+Hash Right Anti Join  (cost=3734.08..106432.42 rows=793 width=20) (actual time=66.138..67.117 rows=19439.00 loops=1)
+  Hash Cond: (t.driver_id = d.driver_id)
+  Buffers: shared hit=138 read=16616 dirtied=678 written=678
+  ->  Bitmap Heap Scan on trips t  (cost=1570.13..103368.50 rows=66239 width=4) (actual time=11.109..53.589 rows=65934.00 loops=1)
+        Recheck Cond: (requested_at >= '2026-06-25 00:00:00+05:30'::timestamp with time zone)
+        Heap Blocks: exact=15681
+        Buffers: shared hit=138 read=15878 dirtied=678 written=678
+        ->  Bitmap Index Scan on idx_trips_city_requested  (cost=0.00..1553.57 rows=66239 width=0) (actual time=10.069..10.069 rows=85942.00 loops=1)
+              Index Cond: (requested_at >= '2026-06-25 00:00:00+05:30'::timestamp with time zone)
+              Index Searches: 11
+              Buffers: shared hit=13 read=322
+  ->  Hash  (cost=1488.00..1488.00 rows=54076 width=20) (actual time=7.208..7.209 rows=53993.00 loops=1)
+        Buckets: 65536  Batches: 1  Memory Usage: 3328kB
+        Buffers: shared read=738
+        ->  Seq Scan on drivers d  (cost=0.00..1488.00 rows=54076 width=20) (actual time=0.027..4.171 rows=53993.00 loops=1)
+              Filter: ((status)::text = 'ACTIVE'::text)
+              Rows Removed by Filter: 6007
+              Buffers: shared read=738
+Planning:
+  Buffers: shared hit=436 read=75
+Planning Time: 1.857 ms
+Execution Time: 67.512 ms
+=== R10 run 2 ===
+Hash Right Anti Join  (cost=3734.08..106432.42 rows=793 width=20) (actual time=37.114..38.138 rows=19439.00 loops=1)
+  Hash Cond: (t.driver_id = d.driver_id)
+  Buffers: shared hit=46 read=16708
+  ->  Bitmap Heap Scan on trips t  (cost=1570.13..103368.50 rows=66239 width=4) (actual time=3.525..24.945 rows=65934.00 loops=1)
+        Recheck Cond: (requested_at >= '2026-06-25 00:00:00+05:30'::timestamp with time zone)
+        Heap Blocks: exact=15681
+        Buffers: shared hit=46 read=15970
+        ->  Bitmap Index Scan on idx_trips_city_requested  (cost=0.00..1553.57 rows=66239 width=0) (actual time=2.473..2.473 rows=85942.00 loops=1)
+              Index Cond: (requested_at >= '2026-06-25 00:00:00+05:30'::timestamp with time zone)
+              Index Searches: 11
+              Buffers: shared hit=14 read=321
+  ->  Hash  (cost=1488.00..1488.00 rows=54076 width=20) (actual time=6.500..6.500 rows=53993.00 loops=1)
+        Buckets: 65536  Batches: 1  Memory Usage: 3328kB
+        Buffers: shared read=738
+        ->  Seq Scan on drivers d  (cost=0.00..1488.00 rows=54076 width=20) (actual time=0.017..3.699 rows=53993.00 loops=1)
+              Filter: ((status)::text = 'ACTIVE'::text)
+              Rows Removed by Filter: 6007
+              Buffers: shared read=738
+Planning:
+  Buffers: shared hit=457 read=54
+Planning Time: 1.198 ms
+Execution Time: 38.533 ms
+=== R10 run 3 ===
+Hash Right Anti Join  (cost=3734.08..106432.42 rows=793 width=20) (actual time=37.179..38.178 rows=19439.00 loops=1)
+  Hash Cond: (t.driver_id = d.driver_id)
+  Buffers: shared hit=19 read=16735
+  ->  Bitmap Heap Scan on trips t  (cost=1570.13..103368.50 rows=66239 width=4) (actual time=3.515..24.932 rows=65934.00 loops=1)
+        Recheck Cond: (requested_at >= '2026-06-25 00:00:00+05:30'::timestamp with time zone)
+        Heap Blocks: exact=15681
+        Buffers: shared hit=19 read=15997
+        ->  Bitmap Index Scan on idx_trips_city_requested  (cost=0.00..1553.57 rows=66239 width=0) (actual time=2.448..2.448 rows=85942.00 loops=1)
+              Index Cond: (requested_at >= '2026-06-25 00:00:00+05:30'::timestamp with time zone)
+              Index Searches: 11
+              Buffers: shared hit=14 read=321
+  ->  Hash  (cost=1488.00..1488.00 rows=54076 width=20) (actual time=6.746..6.746 rows=53993.00 loops=1)
+        Buckets: 65536  Batches: 1  Memory Usage: 3328kB
+        Buffers: shared read=738
+        ->  Seq Scan on drivers d  (cost=0.00..1488.00 rows=54076 width=20) (actual time=0.024..3.862 rows=53993.00 loops=1)
+              Filter: ((status)::text = 'ACTIVE'::text)
+              Rows Removed by Filter: 6007
+              Buffers: shared read=738
+Planning:
+  Buffers: shared hit=467 read=44
+Planning Time: 1.024 ms
+Execution Time: 38.570 ms

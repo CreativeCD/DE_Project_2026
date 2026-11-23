@@ -1,0 +1,159 @@
+=== R19 run 1 ===
+Incremental Sort  (cost=177133.58..181537.86 rows=60000 width=36) (actual time=95.558..97.743 rows=75.00 loops=1)
+  Sort Key: d.city_id, (rank() OVER w1)
+  Presorted Key: d.city_id
+  Full-sort Groups: 3  Sort Method: quicksort  Average Memory: 26kB  Peak Memory: 26kB
+  Buffers: shared hit=1819 read=8172, temp read=279 written=280
+  ->  WindowAgg  (cost=177115.23..178315.21 rows=60000 width=36) (actual time=93.805..97.725 rows=75.00 loops=1)
+        Window: w1 AS (PARTITION BY d.city_id ORDER BY (count(*)) ROWS UNBOUNDED PRECEDING)
+        Run Condition: (rank() OVER w1 <= 3)
+        Storage: Memory  Maximum Storage: 17kB
+        Buffers: shared hit=1813 read=8172, temp read=279 written=280
+        ->  Sort  (cost=177115.21..177265.21 rows=60000 width=28) (actual time=93.799..96.230 rows=59431.00 loops=1)
+              Sort Key: d.city_id, (count(*)) DESC
+              Sort Method: external merge  Disk: 2232kB
+              Buffers: shared hit=1813 read=8172, temp read=279 written=280
+              ->  Finalize HashAggregate  (cost=171753.41..172353.41 rows=60000 width=28) (actual time=83.286..86.172 rows=59431.00 loops=1)
+                    Group Key: d.driver_id
+                    Batches: 1  Memory Usage: 5401kB
+                    Buffers: shared hit=1813 read=8172
+                    ->  Gather  (cost=156033.41..171033.41 rows=144000 width=28) (actual time=64.301..70.681 rows=142114.00 loops=1)
+                          Workers Planned: 2
+                          Workers Launched: 2
+                          Buffers: shared hit=1813 read=8172
+                          ->  Partial HashAggregate  (cost=155033.41..155633.41 rows=60000 width=28) (actual time=62.919..65.613 rows=47371.33 loops=3)
+                                Group Key: d.driver_id
+                                Batches: 1  Memory Usage: 3865kB
+                                Buffers: shared hit=1813 read=8172
+                                Worker 0:  Batches: 1  Memory Usage: 3865kB
+                                Worker 1:  Batches: 1  Memory Usage: 3865kB
+                                ->  Hash Join  (cost=10344.92..154476.38 rows=111406 width=20) (actual time=23.270..50.513 rows=93166.67 loops=3)
+                                      Hash Cond: (t.driver_id = d.driver_id)
+                                      Buffers: shared hit=1813 read=8172
+                                      ->  Parallel Bitmap Heap Scan on trips t  (cost=8256.92..152095.92 rows=111406 width=4) (actual time=16.897..28.172 rows=93166.67 loops=3)
+                                            Recheck Cond: ((requested_at >= '2026-05-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-06-01 00:00:00+05:30'::timestamp with time zone))
+                                            Filter: ((status)::text = 'COMPLETED'::text)
+                                            Rows Removed by Filter: 20386
+                                            Heap Blocks: exact=2131
+                                            Buffers: shared hit=297 read=7434
+                                            Worker 0:  Heap Blocks: exact=2112
+                                            Worker 1:  Heap Blocks: exact=2133
+                                            ->  Bitmap Index Scan on idx_trips_city_requested  (cost=0.00..8190.08 rows=325735 width=0) (actual time=17.744..17.744 rows=340659.00 loops=1)
+                                                  Index Cond: ((requested_at >= '2026-05-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-06-01 00:00:00+05:30'::timestamp with time zone))
+                                                  Index Searches: 12
+                                                  Buffers: shared hit=14 read=1341
+                                      ->  Hash  (cost=1338.00..1338.00 rows=60000 width=20) (actual time=6.333..6.333 rows=60000.00 loops=3)
+                                            Buckets: 65536  Batches: 1  Memory Usage: 3573kB
+                                            Buffers: shared hit=1516 read=738
+                                            ->  Seq Scan on drivers d  (cost=0.00..1338.00 rows=60000 width=20) (actual time=0.030..3.049 rows=60000.00 loops=3)
+                                                  Buffers: shared hit=1516 read=738
+Planning:
+  Buffers: shared hit=364 read=64
+Planning Time: 1.102 ms
+Execution Time: 98.412 ms
+=== R19 run 2 ===
+Incremental Sort  (cost=177133.58..181537.86 rows=60000 width=36) (actual time=89.052..90.841 rows=75.00 loops=1)
+  Sort Key: d.city_id, (rank() OVER w1)
+  Presorted Key: d.city_id
+  Full-sort Groups: 3  Sort Method: quicksort  Average Memory: 26kB  Peak Memory: 26kB
+  Buffers: shared hit=9991, temp read=279 written=280
+  ->  WindowAgg  (cost=177115.23..178315.21 rows=60000 width=36) (actual time=87.415..90.826 rows=75.00 loops=1)
+        Window: w1 AS (PARTITION BY d.city_id ORDER BY (count(*)) ROWS UNBOUNDED PRECEDING)
+        Run Condition: (rank() OVER w1 <= 3)
+        Storage: Memory  Maximum Storage: 17kB
+        Buffers: shared hit=9985, temp read=279 written=280
+        ->  Sort  (cost=177115.21..177265.21 rows=60000 width=28) (actual time=87.410..89.497 rows=59431.00 loops=1)
+              Sort Key: d.city_id, (count(*)) DESC
+              Sort Method: external merge  Disk: 2232kB
+              Buffers: shared hit=9985, temp read=279 written=280
+              ->  Finalize HashAggregate  (cost=171753.41..172353.41 rows=60000 width=28) (actual time=76.673..79.573 rows=59431.00 loops=1)
+                    Group Key: d.driver_id
+                    Batches: 1  Memory Usage: 5401kB
+                    Buffers: shared hit=9985
+                    ->  Gather  (cost=156033.41..171033.41 rows=144000 width=28) (actual time=56.176..62.492 rows=141807.00 loops=1)
+                          Workers Planned: 2
+                          Workers Launched: 2
+                          Buffers: shared hit=9985
+                          ->  Partial HashAggregate  (cost=155033.41..155633.41 rows=60000 width=28) (actual time=54.617..57.291 rows=47269.00 loops=3)
+                                Group Key: d.driver_id
+                                Batches: 1  Memory Usage: 3865kB
+                                Buffers: shared hit=9985
+                                Worker 0:  Batches: 1  Memory Usage: 3865kB
+                                Worker 1:  Batches: 1  Memory Usage: 3865kB
+                                ->  Hash Join  (cost=10344.92..154476.38 rows=111406 width=20) (actual time=12.147..41.247 rows=93166.67 loops=3)
+                                      Hash Cond: (t.driver_id = d.driver_id)
+                                      Buffers: shared hit=9985
+                                      ->  Parallel Bitmap Heap Scan on trips t  (cost=8256.92..152095.92 rows=111406 width=4) (actual time=5.804..17.587 rows=93166.67 loops=3)
+                                            Recheck Cond: ((requested_at >= '2026-05-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-06-01 00:00:00+05:30'::timestamp with time zone))
+                                            Filter: ((status)::text = 'COMPLETED'::text)
+                                            Rows Removed by Filter: 20386
+                                            Heap Blocks: exact=2136
+                                            Buffers: shared hit=7731
+                                            Worker 0:  Heap Blocks: exact=2144
+                                            Worker 1:  Heap Blocks: exact=2096
+                                            ->  Bitmap Index Scan on idx_trips_city_requested  (cost=0.00..8190.08 rows=325735 width=0) (actual time=6.816..6.816 rows=340659.00 loops=1)
+                                                  Index Cond: ((requested_at >= '2026-05-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-06-01 00:00:00+05:30'::timestamp with time zone))
+                                                  Index Searches: 12
+                                                  Buffers: shared hit=1355
+                                      ->  Hash  (cost=1338.00..1338.00 rows=60000 width=20) (actual time=6.307..6.307 rows=60000.00 loops=3)
+                                            Buckets: 65536  Batches: 1  Memory Usage: 3573kB
+                                            Buffers: shared hit=2254
+                                            ->  Seq Scan on drivers d  (cost=0.00..1338.00 rows=60000 width=20) (actual time=0.026..3.005 rows=60000.00 loops=3)
+                                                  Buffers: shared hit=2254
+Planning:
+  Buffers: shared hit=427 read=1
+Planning Time: 0.839 ms
+Execution Time: 91.508 ms
+=== R19 run 3 ===
+Incremental Sort  (cost=177133.58..181537.86 rows=60000 width=36) (actual time=80.992..82.803 rows=75.00 loops=1)
+  Sort Key: d.city_id, (rank() OVER w1)
+  Presorted Key: d.city_id
+  Full-sort Groups: 3  Sort Method: quicksort  Average Memory: 26kB  Peak Memory: 26kB
+  Buffers: shared hit=9991, temp read=279 written=280
+  ->  WindowAgg  (cost=177115.23..178315.21 rows=60000 width=36) (actual time=79.306..82.789 rows=75.00 loops=1)
+        Window: w1 AS (PARTITION BY d.city_id ORDER BY (count(*)) ROWS UNBOUNDED PRECEDING)
+        Run Condition: (rank() OVER w1 <= 3)
+        Storage: Memory  Maximum Storage: 17kB
+        Buffers: shared hit=9985, temp read=279 written=280
+        ->  Sort  (cost=177115.21..177265.21 rows=60000 width=28) (actual time=79.303..81.472 rows=59431.00 loops=1)
+              Sort Key: d.city_id, (count(*)) DESC
+              Sort Method: external merge  Disk: 2232kB
+              Buffers: shared hit=9985, temp read=279 written=280
+              ->  Finalize HashAggregate  (cost=171753.41..172353.41 rows=60000 width=28) (actual time=68.711..71.613 rows=59431.00 loops=1)
+                    Group Key: d.driver_id
+                    Batches: 1  Memory Usage: 5401kB
+                    Buffers: shared hit=9985
+                    ->  Gather  (cost=156033.41..171033.41 rows=144000 width=28) (actual time=48.359..55.078 rows=141958.00 loops=1)
+                          Workers Planned: 2
+                          Workers Launched: 2
+                          Buffers: shared hit=9985
+                          ->  Partial HashAggregate  (cost=155033.41..155633.41 rows=60000 width=28) (actual time=46.606..49.312 rows=47319.33 loops=3)
+                                Group Key: d.driver_id
+                                Batches: 1  Memory Usage: 3865kB
+                                Buffers: shared hit=9985
+                                Worker 0:  Batches: 1  Memory Usage: 3609kB
+                                Worker 1:  Batches: 1  Memory Usage: 3865kB
+                                ->  Hash Join  (cost=10344.92..154476.38 rows=111406 width=20) (actual time=12.396..35.780 rows=93166.67 loops=3)
+                                      Hash Cond: (t.driver_id = d.driver_id)
+                                      Buffers: shared hit=9985
+                                      ->  Parallel Bitmap Heap Scan on trips t  (cost=8256.92..152095.92 rows=111406 width=4) (actual time=5.512..16.469 rows=93166.67 loops=3)
+                                            Recheck Cond: ((requested_at >= '2026-05-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-06-01 00:00:00+05:30'::timestamp with time zone))
+                                            Filter: ((status)::text = 'COMPLETED'::text)
+                                            Rows Removed by Filter: 20386
+                                            Heap Blocks: exact=2202
+                                            Buffers: shared hit=7731
+                                            Worker 0:  Heap Blocks: exact=2054
+                                            Worker 1:  Heap Blocks: exact=2120
+                                            ->  Bitmap Index Scan on idx_trips_city_requested  (cost=0.00..8190.08 rows=325735 width=0) (actual time=6.737..6.737 rows=340659.00 loops=1)
+                                                  Index Cond: ((requested_at >= '2026-05-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-06-01 00:00:00+05:30'::timestamp with time zone))
+                                                  Index Searches: 12
+                                                  Buffers: shared hit=1355
+                                      ->  Hash  (cost=1338.00..1338.00 rows=60000 width=20) (actual time=6.845..6.845 rows=60000.00 loops=3)
+                                            Buckets: 65536  Batches: 1  Memory Usage: 3573kB
+                                            Buffers: shared hit=2254
+                                            ->  Seq Scan on drivers d  (cost=0.00..1338.00 rows=60000 width=20) (actual time=0.025..3.035 rows=60000.00 loops=3)
+                                                  Buffers: shared hit=2254
+Planning:
+  Buffers: shared hit=428
+Planning Time: 0.746 ms
+Execution Time: 83.587 ms

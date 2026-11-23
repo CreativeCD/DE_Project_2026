@@ -1,0 +1,66 @@
+=== R23 run 1 ===
+GroupAggregate  (cost=240225.88..506665.62 rows=1952419 width=20) (actual time=340.647..575.362 rows=60.00 loops=1)
+  Group Key: city_id, (date_trunc('month'::text, requested_at))
+  Buffers: shared hit=12242 read=100022, temp read=7324 written=7354
+  ->  Gather Merge  (cost=240225.88..467617.24 rows=1952419 width=16) (actual time=334.252..508.410 rows=1989010.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=12242 read=100022, temp read=7324 written=7354
+        ->  Sort  (cost=239225.85..241259.62 rows=813508 width=16) (actual time=328.495..374.495 rows=663003.33 loops=3)
+              Sort Key: city_id, (date_trunc('month'::text, requested_at)), rider_id
+              Sort Method: external merge  Disk: 20200kB
+              Buffers: shared hit=12242 read=100022, temp read=7324 written=7354
+              Worker 0:  Sort Method: external merge  Disk: 19152kB
+              Worker 1:  Sort Method: external merge  Disk: 19240kB
+              ->  Parallel Seq Scan on trips  (cost=0.00..145459.10 rows=813508 width=16) (actual time=0.244..142.923 rows=663003.33 loops=3)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Rows Removed by Filter: 1336997
+                    Buffers: shared hit=12152 read=100022
+Planning:
+  Buffers: shared hit=330 read=5
+Planning Time: 0.569 ms
+Execution Time: 576.096 ms
+=== R23 run 2 ===
+GroupAggregate  (cost=240225.88..506665.62 rows=1952419 width=20) (actual time=311.349..551.437 rows=60.00 loops=1)
+  Group Key: city_id, (date_trunc('month'::text, requested_at))
+  Buffers: shared hit=12250 read=100014, temp read=7324 written=7355
+  ->  Gather Merge  (cost=240225.88..467617.24 rows=1952419 width=16) (actual time=305.003..481.215 rows=1989010.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=12250 read=100014, temp read=7324 written=7355
+        ->  Sort  (cost=239225.85..241259.62 rows=813508 width=16) (actual time=297.093..342.875 rows=663003.33 loops=3)
+              Sort Key: city_id, (date_trunc('month'::text, requested_at)), rider_id
+              Sort Method: external merge  Disk: 19040kB
+              Buffers: shared hit=12250 read=100014, temp read=7324 written=7355
+              Worker 0:  Sort Method: external merge  Disk: 19112kB
+              Worker 1:  Sort Method: external merge  Disk: 20440kB
+              ->  Parallel Seq Scan on trips  (cost=0.00..145459.10 rows=813508 width=16) (actual time=0.221..122.442 rows=663003.33 loops=3)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Rows Removed by Filter: 1336997
+                    Buffers: shared hit=12160 read=100014
+Planning:
+  Buffers: shared hit=335
+Planning Time: 0.522 ms
+Execution Time: 551.962 ms
+=== R23 run 3 ===
+GroupAggregate  (cost=240225.88..506665.62 rows=1952419 width=20) (actual time=320.723..556.569 rows=60.00 loops=1)
+  Group Key: city_id, (date_trunc('month'::text, requested_at))
+  Buffers: shared hit=12219 read=100045, temp read=7323 written=7353
+  ->  Gather Merge  (cost=240225.88..467617.24 rows=1952419 width=16) (actual time=313.933..486.198 rows=1989010.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=12219 read=100045, temp read=7323 written=7353
+        ->  Sort  (cost=239225.85..241259.62 rows=813508 width=16) (actual time=306.324..351.951 rows=663003.33 loops=3)
+              Sort Key: city_id, (date_trunc('month'::text, requested_at)), rider_id
+              Sort Method: external merge  Disk: 19056kB
+              Buffers: shared hit=12219 read=100045, temp read=7323 written=7353
+              Worker 0:  Sort Method: external merge  Disk: 19256kB
+              Worker 1:  Sort Method: external merge  Disk: 20272kB
+              ->  Parallel Seq Scan on trips  (cost=0.00..145459.10 rows=813508 width=16) (actual time=0.240..125.420 rows=663003.33 loops=3)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Rows Removed by Filter: 1336997
+                    Buffers: shared hit=12129 read=100045
+Planning:
+  Buffers: shared hit=335
+Planning Time: 0.528 ms
+Execution Time: 557.096 ms

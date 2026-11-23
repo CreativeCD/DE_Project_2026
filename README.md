@@ -37,7 +37,7 @@
 | 2 | Work out the database schema **from the seed data** and load it | `sql/01_schema.sql`, `sql/02_load_data.sql`, `docs/02_schema_design.md` | Query Execution | 5 | ✅ Completed |
 | 3 | Run the **30 given SQL queries** and record their execution time | `docs/03_baseline_timings.md`, `benchmarks/results/baseline/` | Query Execution | 3 | ✅ Completed |
 | 4 | Optimize the queries and record the new times | `sql/05_indexes.sql`, `sql/06_optimized_queries.sql`, `docs/04_optimization_report.md`, `benchmarks/results/optimized/` | Code Optimization | 16 | ✅ Completed (CP3) |
-| 5 | Scalability test on the **large dataset** (given later by faculty) and final report | `docs/05_scalability_report.md`, `benchmarks/results/large/` | Code Optimization | 14 | Upcoming (CP4) |
+| 5 | Scalability test on the **large dataset** (given later by faculty) and final report | `docs/05_scalability_report.md`, `benchmarks/results/large/` | Code Optimization | 14 | ✅ Completed (CP4) |
 | | **Total** | | | **40** | |
 
 > **CP2 Baseline Benchmarking Summary (Completed 17 Nov 2026):**
@@ -57,6 +57,18 @@
 > * Summary CSV: [`benchmarks/results/optimized/summary.csv`](benchmarks/results/optimized/summary.csv)
 > * Master Optimization Report: [`docs/04_optimization_report.md`](docs/04_optimization_report.md)
 > * CP3 Viva Preparation Guide: [`docs/CP3_VIVA_PREPARATION.md`](docs/CP3_VIVA_PREPARATION.md)
+
+> **CP4 Scalability & Final Submission Summary (Completed 23 Nov 2026):**
+> * 20× large production dataset evaluated: **17,785,935 rows total** (6,000,000 trips, 600,000 riders, 60,000 drivers, 4.9M payments).
+> * **100% of the 30 workload queries met their production SLAs** on the 17.8M row database (`uber_large_db`).
+> * Real-time customer queries executed in $< 2.0\text{ ms}$ (median $< 0.1\text{ ms}$, target $< 5\text{ ms}$).
+> * Resolved deep pagination bottleneck in `R16` via Keyset Pagination (dropped from 43 ms to 0.15 ms).
+> * Resolved fraud check sort bottleneck in `R25` via aligned expression index (dropped from 268 ms to 0.15 ms).
+> * Designed declarative monthly range partitioning for 100× scale ($\approx 30\text{M}$ trips/yr) in `sql/08_partitioning.sql`.
+> * Partitioning DDL: [`sql/08_partitioning.sql`](sql/08_partitioning.sql)
+> * Summary CSV: [`benchmarks/results/large/summary.csv`](benchmarks/results/large/summary.csv)
+> * Master Scalability Report: [`docs/05_scalability_report.md`](docs/05_scalability_report.md)
+> * CP4 Viva Preparation Guide: [`docs/CP4_VIVA_PREPARATION.md`](docs/CP4_VIVA_PREPARATION.md)
 
 ---
 

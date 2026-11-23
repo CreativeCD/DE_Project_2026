@@ -1,0 +1,90 @@
+=== R12 run 1 ===
+GroupAggregate  (cost=177399.93..262283.49 rows=600026 width=72) (actual time=202.344..338.316 rows=24.00 loops=1)
+  Group Key: (EXTRACT(hour FROM t.requested_at))
+  Buffers: shared hit=15022 read=97169, temp read=2376 written=2388
+  ->  Gather Merge  (cost=177399.93..247282.84 rows=600026 width=37) (actual time=196.848..283.389 rows=959949.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=15022 read=97169, temp read=2376 written=2388
+        ->  Sort  (cost=176399.90..177024.93 rows=250011 width=37) (actual time=194.614..214.259 rows=319983.00 loops=3)
+              Sort Key: (EXTRACT(hour FROM t.requested_at))
+              Sort Method: external merge  Disk: 6608kB
+              Buffers: shared hit=15022 read=97169, temp read=2376 written=2388
+              Worker 0:  Sort Method: external merge  Disk: 6144kB
+              Worker 1:  Sort Method: external merge  Disk: 6256kB
+              ->  Hash Join  (cost=1.14..147145.38 rows=250011 width=37) (actual time=0.098..160.641 rows=319983.00 loops=3)
+                    Hash Cond: (t.city_id = c.city_id)
+                    Buffers: shared hit=15008 read=97169
+                    ->  Parallel Seq Scan on trips t  (cost=0.00..137175.06 rows=2500106 width=17) (actual time=0.032..62.552 rows=2000000.00 loops=3)
+                          Buffers: shared hit=15006 read=97168
+                    ->  Hash  (cost=1.12..1.12 rows=1 width=4) (actual time=0.055..0.055 rows=1.00 loops=3)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=2 read=1
+                          ->  Seq Scan on cities c  (cost=0.00..1.12 rows=1 width=4) (actual time=0.053..0.053 rows=1.00 loops=3)
+                                Filter: ((city_name)::text = 'Delhi'::text)
+                                Rows Removed by Filter: 9
+                                Buffers: shared hit=2 read=1
+Planning:
+  Buffers: shared hit=462 read=10
+Planning Time: 1.418 ms
+Execution Time: 339.547 ms
+=== R12 run 2 ===
+GroupAggregate  (cost=177399.93..262283.49 rows=600026 width=72) (actual time=208.934..356.346 rows=24.00 loops=1)
+  Group Key: (EXTRACT(hour FROM t.requested_at))
+  Buffers: shared hit=15305 read=96886, temp read=2373 written=2385
+  ->  Gather Merge  (cost=177399.93..247282.84 rows=600026 width=37) (actual time=203.072..295.849 rows=959949.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=15305 read=96886, temp read=2373 written=2385
+        ->  Sort  (cost=176399.90..177024.93 rows=250011 width=37) (actual time=201.074..223.321 rows=319983.00 loops=3)
+              Sort Key: (EXTRACT(hour FROM t.requested_at))
+              Sort Method: external merge  Disk: 6464kB
+              Buffers: shared hit=15305 read=96886, temp read=2373 written=2385
+              Worker 0:  Sort Method: external merge  Disk: 6240kB
+              Worker 1:  Sort Method: external merge  Disk: 6280kB
+              ->  Hash Join  (cost=1.14..147145.38 rows=250011 width=37) (actual time=0.083..165.279 rows=319983.00 loops=3)
+                    Hash Cond: (t.city_id = c.city_id)
+                    Buffers: shared hit=15291 read=96886
+                    ->  Parallel Seq Scan on trips t  (cost=0.00..137175.06 rows=2500106 width=17) (actual time=0.054..62.884 rows=2000000.00 loops=3)
+                          Buffers: shared hit=15288 read=96886
+                    ->  Hash  (cost=1.12..1.12 rows=1 width=4) (actual time=0.018..0.018 rows=1.00 loops=3)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=3
+                          ->  Seq Scan on cities c  (cost=0.00..1.12 rows=1 width=4) (actual time=0.016..0.016 rows=1.00 loops=3)
+                                Filter: ((city_name)::text = 'Delhi'::text)
+                                Rows Removed by Filter: 9
+                                Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=472
+Planning Time: 0.726 ms
+Execution Time: 357.470 ms
+=== R12 run 3 ===
+GroupAggregate  (cost=177399.93..262283.49 rows=600026 width=72) (actual time=207.993..378.679 rows=24.00 loops=1)
+  Group Key: (EXTRACT(hour FROM t.requested_at))
+  Buffers: shared hit=15587 read=96604, temp read=2377 written=2389
+  ->  Gather Merge  (cost=177399.93..247282.84 rows=600026 width=37) (actual time=201.495..311.928 rows=959949.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=15587 read=96604, temp read=2377 written=2389
+        ->  Sort  (cost=176399.90..177024.93 rows=250011 width=37) (actual time=199.026..223.331 rows=319983.00 loops=3)
+              Sort Key: (EXTRACT(hour FROM t.requested_at))
+              Sort Method: external merge  Disk: 6616kB
+              Buffers: shared hit=15587 read=96604, temp read=2377 written=2389
+              Worker 0:  Sort Method: external merge  Disk: 5992kB
+              Worker 1:  Sort Method: external merge  Disk: 6408kB
+              ->  Hash Join  (cost=1.14..147145.38 rows=250011 width=37) (actual time=0.058..163.470 rows=319983.00 loops=3)
+                    Hash Cond: (t.city_id = c.city_id)
+                    Buffers: shared hit=15573 read=96604
+                    ->  Parallel Seq Scan on trips t  (cost=0.00..137175.06 rows=2500106 width=17) (actual time=0.031..62.622 rows=2000000.00 loops=3)
+                          Buffers: shared hit=15570 read=96604
+                    ->  Hash  (cost=1.12..1.12 rows=1 width=4) (actual time=0.017..0.017 rows=1.00 loops=3)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=3
+                          ->  Seq Scan on cities c  (cost=0.00..1.12 rows=1 width=4) (actual time=0.015..0.015 rows=1.00 loops=3)
+                                Filter: ((city_name)::text = 'Delhi'::text)
+                                Rows Removed by Filter: 9
+                                Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=472
+Planning Time: 0.673 ms
+Execution Time: 379.829 ms

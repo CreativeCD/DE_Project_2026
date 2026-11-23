@@ -1,0 +1,30 @@
+=== R24 run 1 ===
+Limit  (cost=0.29..328.76 rows=100 width=28) (actual time=0.222..0.465 rows=100.00 loops=1)
+  Buffers: shared hit=12 read=90
+  ->  Index Scan using idx_trips_fraud_long on trips  (cost=0.29..167718.14 rows=51061 width=28) (actual time=0.222..0.460 rows=100.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=12 read=90
+Planning:
+  Buffers: shared hit=318 read=2
+Planning Time: 0.623 ms
+Execution Time: 0.474 ms
+=== R24 run 2 ===
+Limit  (cost=0.29..328.76 rows=100 width=28) (actual time=0.008..0.117 rows=100.00 loops=1)
+  Buffers: shared hit=102
+  ->  Index Scan using idx_trips_fraud_long on trips  (cost=0.29..167718.14 rows=51061 width=28) (actual time=0.007..0.112 rows=100.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=102
+Planning:
+  Buffers: shared hit=320
+Planning Time: 0.562 ms
+Execution Time: 0.126 ms
+=== R24 run 3 ===
+Limit  (cost=0.29..328.76 rows=100 width=28) (actual time=0.007..0.109 rows=100.00 loops=1)
+  Buffers: shared hit=102
+  ->  Index Scan using idx_trips_fraud_long on trips  (cost=0.29..167718.14 rows=51061 width=28) (actual time=0.007..0.105 rows=100.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=102
+Planning:
+  Buffers: shared hit=320
+Planning Time: 0.543 ms
+Execution Time: 0.118 ms

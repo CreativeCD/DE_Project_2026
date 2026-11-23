@@ -1,0 +1,33 @@
+=== W04 run 1 ===
+Insert on trips  (cost=0.00..150.00 rows=0 width=0) (actual time=55.704..55.704 rows=0.00 loops=1)
+  Buffers: shared hit=113433 read=2156 dirtied=1677 written=176
+  ->  Function Scan on generate_series g  (cost=0.00..150.00 rows=5000 width=274) (actual time=0.121..0.809 rows=5000.00 loops=1)
+Planning Time: 0.059 ms
+Trigger for constraint trips_rider_id_fkey: time=14.977 calls=5000
+Trigger for constraint trips_driver_id_fkey: time=1.059 calls=5000
+Trigger for constraint trips_vehicle_id_fkey: time=1.041 calls=5000
+Trigger for constraint trips_city_id_fkey: time=8.234 calls=5000
+Trigger for constraint trips_promo_code_fkey: time=1.029 calls=5000
+Execution Time: 82.627 ms
+=== W04 run 2 ===
+Insert on trips  (cost=0.00..150.00 rows=0 width=0) (actual time=38.249..38.249 rows=0.00 loops=1)
+  Buffers: shared hit=117234 read=140 dirtied=101 written=100
+  ->  Function Scan on generate_series g  (cost=0.00..150.00 rows=5000 width=274) (actual time=0.109..0.759 rows=5000.00 loops=1)
+Planning Time: 0.053 ms
+Trigger for constraint trips_rider_id_fkey: time=13.837 calls=5000
+Trigger for constraint trips_driver_id_fkey: time=1.062 calls=5000
+Trigger for constraint trips_vehicle_id_fkey: time=1.048 calls=5000
+Trigger for constraint trips_city_id_fkey: time=8.282 calls=5000
+Trigger for constraint trips_promo_code_fkey: time=1.022 calls=5000
+Execution Time: 64.044 ms
+=== W04 run 3 ===
+Insert on trips  (cost=0.00..150.00 rows=0 width=0) (actual time=36.581..36.581 rows=0.00 loops=1)
+  Buffers: shared hit=117039 read=1 dirtied=135 written=133
+  ->  Function Scan on generate_series g  (cost=0.00..150.00 rows=5000 width=274) (actual time=0.109..0.775 rows=5000.00 loops=1)
+Planning Time: 0.053 ms
+Trigger for constraint trips_rider_id_fkey: time=13.883 calls=5000
+Trigger for constraint trips_driver_id_fkey: time=1.072 calls=5000
+Trigger for constraint trips_vehicle_id_fkey: time=1.041 calls=5000
+Trigger for constraint trips_city_id_fkey: time=8.154 calls=5000
+Trigger for constraint trips_promo_code_fkey: time=1.030 calls=5000
+Execution Time: 62.322 ms

@@ -1,0 +1,33 @@
+=== R16 run 1 ===
+Limit  (cost=0.43..1.62 rows=25 width=45) (actual time=0.389..0.392 rows=25.00 loops=1)
+  Buffers: shared hit=4 read=3
+  ->  Index Scan Backward using trips_pkey on trips  (cost=0.43..275972.34 rows=5807675 width=45) (actual time=0.388..0.391 rows=25.00 loops=1)
+        Index Cond: (trip_id <= 5800000)
+        Index Searches: 1
+        Buffers: shared hit=4 read=3
+Planning:
+  Buffers: shared hit=310
+Planning Time: 0.541 ms
+Execution Time: 0.404 ms
+=== R16 run 2 ===
+Limit  (cost=0.43..1.62 rows=25 width=45) (actual time=0.016..0.020 rows=25.00 loops=1)
+  Buffers: shared hit=7
+  ->  Index Scan Backward using trips_pkey on trips  (cost=0.43..275972.34 rows=5807675 width=45) (actual time=0.015..0.018 rows=25.00 loops=1)
+        Index Cond: (trip_id <= 5800000)
+        Index Searches: 1
+        Buffers: shared hit=7
+Planning:
+  Buffers: shared hit=310
+Planning Time: 0.547 ms
+Execution Time: 0.033 ms
+=== R16 run 3 ===
+Limit  (cost=0.43..1.62 rows=25 width=45) (actual time=0.015..0.019 rows=25.00 loops=1)
+  Buffers: shared hit=7
+  ->  Index Scan Backward using trips_pkey on trips  (cost=0.43..275972.34 rows=5807675 width=45) (actual time=0.015..0.018 rows=25.00 loops=1)
+        Index Cond: (trip_id <= 5800000)
+        Index Searches: 1
+        Buffers: shared hit=7
+Planning:
+  Buffers: shared hit=310
+Planning Time: 0.548 ms
+Execution Time: 0.034 ms

@@ -1,0 +1,33 @@
+=== R01 run 1 ===
+Limit  (cost=0.43..48.62 rows=11 width=120) (actual time=0.024..0.053 rows=7.00 loops=1)
+  Buffers: shared hit=4 read=10 dirtied=1
+  ->  Index Scan using idx_trips_rider_requested on trips  (cost=0.43..48.62 rows=11 width=120) (actual time=0.023..0.052 rows=7.00 loops=1)
+        Index Cond: (rider_id = 1042)
+        Index Searches: 1
+        Buffers: shared hit=4 read=10 dirtied=1
+Planning:
+  Buffers: shared hit=368 read=1
+Planning Time: 0.626 ms
+Execution Time: 0.064 ms
+=== R01 run 2 ===
+Limit  (cost=0.43..48.62 rows=11 width=120) (actual time=0.008..0.018 rows=7.00 loops=1)
+  Buffers: shared hit=10
+  ->  Index Scan using idx_trips_rider_requested on trips  (cost=0.43..48.62 rows=11 width=120) (actual time=0.008..0.017 rows=7.00 loops=1)
+        Index Cond: (rider_id = 1042)
+        Index Searches: 1
+        Buffers: shared hit=10
+Planning:
+  Buffers: shared hit=350
+Planning Time: 0.560 ms
+Execution Time: 0.028 ms
+=== R01 run 3 ===
+Limit  (cost=0.43..48.62 rows=11 width=120) (actual time=0.008..0.017 rows=7.00 loops=1)
+  Buffers: shared hit=10
+  ->  Index Scan using idx_trips_rider_requested on trips  (cost=0.43..48.62 rows=11 width=120) (actual time=0.008..0.016 rows=7.00 loops=1)
+        Index Cond: (rider_id = 1042)
+        Index Searches: 1
+        Buffers: shared hit=10
+Planning:
+  Buffers: shared hit=350
+Planning Time: 0.529 ms
+Execution Time: 0.027 ms

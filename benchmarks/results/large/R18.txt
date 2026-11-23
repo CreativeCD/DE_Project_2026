@@ -1,0 +1,120 @@
+=== R18 run 1 ===
+Sort  (cost=110753.16..110872.96 rows=47920 width=24) (actual time=126.275..127.390 rows=48000.00 loops=1)
+  Sort Key: (max(t.requested_at)) DESC NULLS LAST
+  Sort Method: quicksort  Memory: 3444kB
+  Buffers: shared hit=333614 read=69421 dirtied=255 written=255
+  ->  Finalize HashAggregate  (cost=106548.58..107027.78 rows=47920 width=24) (actual time=118.614..121.234 rows=48000.00 loops=1)
+        Group Key: r.rider_id
+        Batches: 1  Memory Usage: 3609kB
+        Buffers: shared hit=333611 read=69421 dirtied=255 written=255
+        ->  Gather  (cost=93993.54..105973.54 rows=115008 width=24) (actual time=111.518..113.895 rows=48000.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=333611 read=69421 dirtied=255 written=255
+              ->  Partial HashAggregate  (cost=92993.54..93472.74 rows=47920 width=24) (actual time=109.031..110.080 rows=16000.00 loops=3)
+                    Group Key: r.rider_id
+                    Batches: 1  Memory Usage: 2073kB
+                    Buffers: shared hit=333611 read=69421 dirtied=255 written=255
+                    Worker 0:  Batches: 1  Memory Usage: 2073kB
+                    Worker 1:  Batches: 1  Memory Usage: 2073kB
+                    ->  Nested Loop Left Join  (cost=536.24..91995.16 rows=199675 width=24) (actual time=0.942..96.669 rows=160024.67 loops=3)
+                          Buffers: shared hit=333611 read=69421 dirtied=255 written=255
+                          ->  Parallel Bitmap Heap Scan on riders r  (cost=535.80..8268.39 rows=19967 width=16) (actual time=0.895..5.022 rows=16000.00 loops=3)
+                                Recheck Cond: (home_city_id = 6)
+                                Heap Blocks: exact=2494
+                                Buffers: shared hit=125 read=7441 written=26
+                                Worker 0:  Heap Blocks: exact=2507
+                                Worker 1:  Heap Blocks: exact=2482
+                                ->  Bitmap Index Scan on idx_riders_home_city  (cost=0.00..523.82 rows=47920 width=0) (actual time=1.789..1.789 rows=48000.00 loops=1)
+                                      Index Cond: (home_city_id = 6)
+                                      Index Searches: 1
+                                      Buffers: shared read=43
+                          ->  Index Only Scan using idx_trips_rider_requested on trips t  (cost=0.43..4.08 rows=11 width=12) (actual time=0.002..0.005 rows=10.00 loops=48000)
+                                Index Cond: (rider_id = r.rider_id)
+                                Heap Fetches: 78761
+                                Index Searches: 48000
+                                Buffers: shared hit=333486 read=61980 dirtied=255 written=229
+Planning:
+  Buffers: shared hit=447
+Planning Time: 0.856 ms
+Execution Time: 128.421 ms
+=== R18 run 2 ===
+Sort  (cost=110753.16..110872.96 rows=47920 width=24) (actual time=116.951..117.971 rows=48000.00 loops=1)
+  Sort Key: (max(t.requested_at)) DESC NULLS LAST
+  Sort Method: quicksort  Memory: 3444kB
+  Buffers: shared hit=332113 read=69189
+  ->  Finalize HashAggregate  (cost=106548.58..107027.78 rows=47920 width=24) (actual time=109.749..112.126 rows=48000.00 loops=1)
+        Group Key: r.rider_id
+        Batches: 1  Memory Usage: 3609kB
+        Buffers: shared hit=332110 read=69189
+        ->  Gather  (cost=93993.54..105973.54 rows=115008 width=24) (actual time=102.970..105.213 rows=48000.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=332110 read=69189
+              ->  Partial HashAggregate  (cost=92993.54..93472.74 rows=47920 width=24) (actual time=101.273..102.284 rows=16000.00 loops=3)
+                    Group Key: r.rider_id
+                    Batches: 1  Memory Usage: 2073kB
+                    Buffers: shared hit=332110 read=69189
+                    Worker 0:  Batches: 1  Memory Usage: 1817kB
+                    Worker 1:  Batches: 1  Memory Usage: 1817kB
+                    ->  Nested Loop Left Join  (cost=536.24..91995.16 rows=199675 width=24) (actual time=0.576..89.456 rows=160024.67 loops=3)
+                          Buffers: shared hit=332110 read=69189
+                          ->  Parallel Bitmap Heap Scan on riders r  (cost=535.80..8268.39 rows=19967 width=16) (actual time=0.539..4.329 rows=16000.00 loops=3)
+                                Recheck Cond: (home_city_id = 6)
+                                Heap Blocks: exact=2530
+                                Buffers: shared hit=40 read=7526
+                                Worker 0:  Heap Blocks: exact=2474
+                                Worker 1:  Heap Blocks: exact=2479
+                                ->  Bitmap Index Scan on idx_riders_home_city  (cost=0.00..523.82 rows=47920 width=0) (actual time=0.923..0.923 rows=48000.00 loops=1)
+                                      Index Cond: (home_city_id = 6)
+                                      Index Searches: 1
+                                      Buffers: shared read=43
+                          ->  Index Only Scan using idx_trips_rider_requested on trips t  (cost=0.43..4.08 rows=11 width=12) (actual time=0.002..0.005 rows=10.00 loops=48000)
+                                Index Cond: (rider_id = r.rider_id)
+                                Heap Fetches: 77561
+                                Index Searches: 48000
+                                Buffers: shared hit=332070 read=61663
+Planning:
+  Buffers: shared hit=379 read=68
+Planning Time: 1.042 ms
+Execution Time: 118.983 ms
+=== R18 run 3 ===
+Sort  (cost=110753.16..110872.96 rows=47920 width=24) (actual time=114.947..115.982 rows=48000.00 loops=1)
+  Sort Key: (max(t.requested_at)) DESC NULLS LAST
+  Sort Method: quicksort  Memory: 3444kB
+  Buffers: shared hit=332119 read=69180
+  ->  Finalize HashAggregate  (cost=106548.58..107027.78 rows=47920 width=24) (actual time=108.029..110.230 rows=48000.00 loops=1)
+        Group Key: r.rider_id
+        Batches: 1  Memory Usage: 3609kB
+        Buffers: shared hit=332116 read=69180
+        ->  Gather  (cost=93993.54..105973.54 rows=115008 width=24) (actual time=101.228..103.612 rows=48000.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=332116 read=69180
+              ->  Partial HashAggregate  (cost=92993.54..93472.74 rows=47920 width=24) (actual time=100.738..101.740 rows=16000.00 loops=3)
+                    Group Key: r.rider_id
+                    Batches: 1  Memory Usage: 2073kB
+                    Buffers: shared hit=332116 read=69180
+                    Worker 0:  Batches: 1  Memory Usage: 1817kB
+                    Worker 1:  Batches: 1  Memory Usage: 2073kB
+                    ->  Nested Loop Left Join  (cost=536.24..91995.16 rows=199675 width=24) (actual time=0.571..88.999 rows=160024.67 loops=3)
+                          Buffers: shared hit=332116 read=69180
+                          ->  Parallel Bitmap Heap Scan on riders r  (cost=535.80..8268.39 rows=19967 width=16) (actual time=0.525..4.306 rows=16000.00 loops=3)
+                                Recheck Cond: (home_city_id = 6)
+                                Heap Blocks: exact=2501
+                                Buffers: shared hit=40 read=7526
+                                Worker 0:  Heap Blocks: exact=2477
+                                Worker 1:  Heap Blocks: exact=2505
+                                ->  Bitmap Index Scan on idx_riders_home_city  (cost=0.00..523.82 rows=47920 width=0) (actual time=0.904..0.904 rows=48000.00 loops=1)
+                                      Index Cond: (home_city_id = 6)
+                                      Index Searches: 1
+                                      Buffers: shared read=43
+                          ->  Index Only Scan using idx_trips_rider_requested on trips t  (cost=0.43..4.08 rows=11 width=12) (actual time=0.002..0.005 rows=10.00 loops=48000)
+                                Index Cond: (rider_id = r.rider_id)
+                                Heap Fetches: 77561
+                                Index Searches: 48000
+                                Buffers: shared hit=332076 read=61654
+Planning:
+  Buffers: shared hit=379 read=68
+Planning Time: 1.003 ms
+Execution Time: 116.984 ms
